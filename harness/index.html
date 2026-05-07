@@ -51,7 +51,9 @@
           return;
         }
         const xhr = new XMLHttpRequest();
-        xhr.open("GET", "/" + calc + "/questionnaire.json", false); // synchronous
+        // Relative path so the harness works at any base URL: locally at
+        // /harness/ and on GitHub Pages at /tiro-calculators/harness/.
+        xhr.open("GET", "../" + calc + "/questionnaire.json", false);
         try {
           xhr.send();
           if (xhr.status !== 200) throw new Error("fetch " + xhr.status);
