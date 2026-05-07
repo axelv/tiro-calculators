@@ -1,0 +1,502 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "TriScore",
+  "title": "TRI-SCORE — In-Hospital Mortality after Isolated Tricuspid Valve Surgery",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Additive 8-item integer risk score (range 0–12) predicting in-hospital mortality after isolated tricuspid valve surgery in adults with severe tricuspid regurgitation. Source: Dreyfus J, Audureau E, Bohbot Y, et al. TRI-SCORE: a new risk score for in-hospital mortality prediction after isolated tricuspid valve surgery. Eur Heart J 2022;43(7):654–662.",
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "age_ge_70",
+          "text": "Age ≥ 70 years at the time of surgery",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "no",
+                "display": "Age < 70"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "yes",
+                "display": "Age ≥ 70"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "nyha_class_iii_iv",
+          "text": "NYHA functional class III or IV",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "no",
+                "display": "NYHA I–II"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "yes",
+                "display": "NYHA III–IV"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "right_heart_failure_signs",
+          "text": "Clinical signs of right-sided heart failure (severe JVD, ascites, and/or marked peripheral oedema)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "no",
+                "display": "No RHF signs"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 2
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "yes",
+                "display": "RHF signs present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "daily_furosemide_ge_125_mg",
+          "text": "Daily oral furosemide-equivalent dose ≥ 125 mg",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "no",
+                "display": "Furosemide < 125 mg/day"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 2
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "yes",
+                "display": "Furosemide ≥ 125 mg/day"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "gfr_lt_30",
+          "text": "eGFR < 30 mL/min/1.73 m² (or chronic dialysis)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "no",
+                "display": "eGFR ≥ 30"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 2
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "yes",
+                "display": "eGFR < 30 or dialysis"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "bilirubin_elevated",
+          "text": "Total serum bilirubin above the local laboratory upper limit of normal",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "no",
+                "display": "Bilirubin normal"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 2
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "yes",
+                "display": "Bilirubin elevated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "lvef_lt_60",
+          "text": "Left ventricular ejection fraction < 60 %",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "no",
+                "display": "LVEF ≥ 60 %"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "yes",
+                "display": "LVEF < 60 %"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "rv_dysfunction_mod_severe",
+          "text": "Moderate or severe right ventricular systolic dysfunction on TTE",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "no",
+                "display": "RV function normal/mild"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/tri-score",
+                "code": "yes",
+                "display": "RV dysfunction mod/severe"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "score",
+          "text": "TRI-SCORE",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.answer.value.weight().sum()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%totalScore"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "predicted_inhospital_mortality_pct",
+          "text": "Predicted in-hospital mortality (%)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.answer.value.weight().sum()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalScore = 0, 1, iif(%totalScore = 1, 2, iif(%totalScore = 2, 3, iif(%totalScore = 3, 5, iif(%totalScore = 4, 8, iif(%totalScore = 5, 14, iif(%totalScore = 6, 22, iif(%totalScore = 7, 34, iif(%totalScore = 8, 48, 65))))))))) "
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_band",
+          "text": "Risk band",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.answer.value.weight().sum()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalScore <= 3, 'low', iif(%totalScore <= 5, 'intermediate', 'high'))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

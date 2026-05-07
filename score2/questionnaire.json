@@ -1,0 +1,534 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "Score2",
+  "title": "SCORE2 — 10-year CVD risk (40-69 y)",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "SCORE2 is the European 10-year fatal-and-non-fatal cardiovascular disease (CVD) risk model for apparently healthy adults aged 40-69 (no prior CVD, diabetes, CKD, familial hypercholesterolaemia, or pregnancy). Sex-stratified competing-risks Cox model with age interactions and four-region recalibration. Source: SCORE2 Working Group, Eur Heart J 2021;42(25):2439-2454.",
+  "extension": [],
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "sex",
+          "type": "coding",
+          "text": "Sex",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/score2",
+                "code": "male",
+                "display": "Male"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/score2",
+                "code": "female",
+                "display": "Female"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "age_years",
+          "type": "decimal",
+          "text": "Age (years, 40-69)",
+          "required": true
+        },
+        {
+          "linkId": "smoking",
+          "type": "coding",
+          "text": "Smoking status",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/score2",
+                "code": "current",
+                "display": "Current smoker"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/score2",
+                "code": "other",
+                "display": "Never / former smoker"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "sbp_mmHg",
+          "type": "decimal",
+          "text": "Systolic blood pressure (mmHg)",
+          "required": true
+        },
+        {
+          "linkId": "total_chol_mmol_L",
+          "type": "decimal",
+          "text": "Total cholesterol (mmol/L)",
+          "required": true
+        },
+        {
+          "linkId": "hdl_chol_mmol_L",
+          "type": "decimal",
+          "text": "HDL cholesterol (mmol/L)",
+          "required": true
+        },
+        {
+          "linkId": "region",
+          "type": "coding",
+          "text": "Risk region",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/score2",
+                "code": "low",
+                "display": "Low risk region"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/score2",
+                "code": "moderate",
+                "display": "Moderate risk region"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/score2",
+                "code": "high",
+                "display": "High risk region"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/score2",
+                "code": "very_high",
+                "display": "Very high risk region"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "risk_pct",
+          "type": "decimal",
+          "text": "10-year CVD risk (%)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sexCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "age",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age_years').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "smk",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='smoking').answer.value.code = 'current', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sbp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sbp_mmHg').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "tchol",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='total_chol_mmol_L').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hdl",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='hdl_chol_mmol_L').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "regionCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='region').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "cage",
+                "language": "text/fhirpath",
+                "expression": "(%age - 60) / 5"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "csbp",
+                "language": "text/fhirpath",
+                "expression": "(%sbp - 120) / 20"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ctchol",
+                "language": "text/fhirpath",
+                "expression": "%tchol - 6"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "chdl",
+                "language": "text/fhirpath",
+                "expression": "(%hdl - 1.3) / 0.5"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lp",
+                "language": "text/fhirpath",
+                "expression": "iif(%sexCode = 'male', 0.3742 * %cage + 0.6012 * %smk + 0.2777 * %csbp + 0.1458 * %ctchol + (-0.2698) * %chdl + (-0.0755) * %cage * %smk + (-0.0255) * %cage * %csbp + (-0.0281) * %cage * %ctchol + 0.0426 * %cage * %chdl, 0.4648 * %cage + 0.7744 * %smk + 0.3131 * %csbp + 0.1002 * %ctchol + (-0.2606) * %chdl + (-0.1088) * %cage * %smk + (-0.0277) * %cage * %csbp + (-0.0226) * %cage * %ctchol + 0.0613 * %cage * %chdl)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "s0",
+                "language": "text/fhirpath",
+                "expression": "iif(%sexCode = 'male', 0.9605, 0.9776)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "riskUncal",
+                "language": "text/fhirpath",
+                "expression": "1 - %s0.power(%lp.exp())"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "cll",
+                "language": "text/fhirpath",
+                "expression": "(0 - (1 - %riskUncal).ln()).ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scaled",
+                "language": "text/fhirpath",
+                "expression": "iif(%sexCode = 'male', iif(%regionCode = 'low', -0.5699 + 0.7476 * %cll, iif(%regionCode = 'moderate', -0.1565 + 0.8009 * %cll, iif(%regionCode = 'high', 0.3207 + 0.9360 * %cll, 0.5836 + 0.8294 * %cll))), iif(%regionCode = 'low', -0.7380 + 0.7019 * %cll, iif(%regionCode = 'moderate', -0.3143 + 0.7701 * %cll, iif(%regionCode = 'high', 0.5710 + 0.9369 * %cll, 0.9412 + 0.8329 * %cll))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "riskCal",
+                "language": "text/fhirpath",
+                "expression": "1 - (0 - %scaled.exp()).exp()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "(%riskCal * 1000).round() / 10"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "age_band",
+          "type": "string",
+          "text": "Age band",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "age",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age_years').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%age < 50, '40_49', '50_69')"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_category",
+          "type": "string",
+          "text": "Risk category (ESC 2021 thresholds)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sexCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "age",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age_years').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "smk",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='smoking').answer.value.code = 'current', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sbp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sbp_mmHg').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "tchol",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='total_chol_mmol_L').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hdl",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='hdl_chol_mmol_L').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "regionCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='region').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "cage",
+                "language": "text/fhirpath",
+                "expression": "(%age - 60) / 5"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "csbp",
+                "language": "text/fhirpath",
+                "expression": "(%sbp - 120) / 20"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ctchol",
+                "language": "text/fhirpath",
+                "expression": "%tchol - 6"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "chdl",
+                "language": "text/fhirpath",
+                "expression": "(%hdl - 1.3) / 0.5"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lp",
+                "language": "text/fhirpath",
+                "expression": "iif(%sexCode = 'male', 0.3742 * %cage + 0.6012 * %smk + 0.2777 * %csbp + 0.1458 * %ctchol + (-0.2698) * %chdl + (-0.0755) * %cage * %smk + (-0.0255) * %cage * %csbp + (-0.0281) * %cage * %ctchol + 0.0426 * %cage * %chdl, 0.4648 * %cage + 0.7744 * %smk + 0.3131 * %csbp + 0.1002 * %ctchol + (-0.2606) * %chdl + (-0.1088) * %cage * %smk + (-0.0277) * %cage * %csbp + (-0.0226) * %cage * %ctchol + 0.0613 * %cage * %chdl)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "s0",
+                "language": "text/fhirpath",
+                "expression": "iif(%sexCode = 'male', 0.9605, 0.9776)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "riskUncal",
+                "language": "text/fhirpath",
+                "expression": "1 - %s0.power(%lp.exp())"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "cll",
+                "language": "text/fhirpath",
+                "expression": "(0 - (1 - %riskUncal).ln()).ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scaled",
+                "language": "text/fhirpath",
+                "expression": "iif(%sexCode = 'male', iif(%regionCode = 'low', -0.5699 + 0.7476 * %cll, iif(%regionCode = 'moderate', -0.1565 + 0.8009 * %cll, iif(%regionCode = 'high', 0.3207 + 0.9360 * %cll, 0.5836 + 0.8294 * %cll))), iif(%regionCode = 'low', -0.7380 + 0.7019 * %cll, iif(%regionCode = 'moderate', -0.3143 + 0.7701 * %cll, iif(%regionCode = 'high', 0.5710 + 0.9369 * %cll, 0.9412 + 0.8329 * %cll))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "riskCal",
+                "language": "text/fhirpath",
+                "expression": "1 - (0 - %scaled.exp()).exp()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "riskPct",
+                "language": "text/fhirpath",
+                "expression": "%riskCal * 100"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%age < 50, iif(%riskPct >= 7.5, 'very_high', iif(%riskPct >= 2.5, 'high', 'low_to_moderate')), iif(%riskPct >= 10, 'very_high', iif(%riskPct >= 5, 'high', 'low_to_moderate')))"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

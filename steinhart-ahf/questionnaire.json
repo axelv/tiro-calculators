@@ -1,0 +1,166 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "SteinhartAhf",
+  "title": "Steinhart Model for Acute Heart Failure (AHF) in Undifferentiated Dyspnea",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Estimates the probability of acute heart failure in adult ED patients with undifferentiated dyspnea by combining the clinician's pre-test (gestalt) probability with NT-proBNP and age. Source: Steinhart B, Thorpe KE, Bayoumi AM, Moe G, Januzzi JL Jr, Mazer CD. Improving the diagnosis of acute heart failure using a validated prediction model. J Am Coll Cardiol. 2009;54(16):1515-1521.",
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "age",
+          "type": "decimal",
+          "text": "Age (years)",
+          "required": true
+        },
+        {
+          "linkId": "pretest_probability",
+          "type": "decimal",
+          "text": "Pre-test (gestalt) probability of AHF (%)",
+          "required": true
+        },
+        {
+          "linkId": "nt_probnp",
+          "type": "decimal",
+          "text": "NT-proBNP (pmol/L)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "probability_ahf",
+          "type": "decimal",
+          "text": "Predicted probability of AHF (%)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "pretestProb",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='pretest_probability').answer.value / 100"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "pretestOdds",
+                "language": "text/fhirpath",
+                "expression": "%pretestProb / (1 - %pretestProb)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ntProBnpPgmL",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='nt_probnp').answer.value * 8.457"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lr",
+                "language": "text/fhirpath",
+                "expression": "iif(%ntProBnpPgmL < 300, 0.11, iif(%ntProBnpPgmL < 1800, 2.0, iif(%ntProBnpPgmL < 2700, 2.7, iif(%ntProBnpPgmL < 8100, 3.43, 12.80))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "((%pretestOdds * %lr) / (1 + (%pretestOdds * %lr))) * 100"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_band",
+          "type": "string",
+          "text": "Risk band",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "pretestProb",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='pretest_probability').answer.value / 100"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "pretestOdds",
+                "language": "text/fhirpath",
+                "expression": "%pretestProb / (1 - %pretestProb)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ntProBnpPgmL",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='nt_probnp').answer.value * 8.457"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lr",
+                "language": "text/fhirpath",
+                "expression": "iif(%ntProBnpPgmL < 300, 0.11, iif(%ntProBnpPgmL < 1800, 2.0, iif(%ntProBnpPgmL < 2700, 2.7, iif(%ntProBnpPgmL < 8100, 3.43, 12.80))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "probabilityAhfPct",
+                "language": "text/fhirpath",
+                "expression": "((%pretestOdds * %lr) / (1 + (%pretestOdds * %lr))) * 100"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%probabilityAhfPct < 21, 'Low', iif(%probabilityAhfPct < 80, 'Intermediate', 'High'))"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

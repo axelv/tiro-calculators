@@ -1,0 +1,268 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "Hematotox",
+  "title": "CAR-HEMATOTOX Score",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Pre-lymphodepletion risk stratification for prolonged hematologic toxicity and severe infections after CD19 CAR-T cell therapy in relapsed/refractory large B-cell lymphoma. Combines hematopoietic reserve (ANC, hemoglobin, platelets) and baseline systemic inflammation (CRP, ferritin). Source: Rejeski K et al., Blood 2021;138(24):2499-2513.",
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "platelet_x10e9_per_L",
+          "type": "decimal",
+          "text": "Platelet count (×10⁹/L)",
+          "required": true
+        },
+        {
+          "linkId": "anc_per_uL",
+          "type": "decimal",
+          "text": "Absolute neutrophil count (cells/µL)",
+          "required": true
+        },
+        {
+          "linkId": "hemoglobin_g_dL",
+          "type": "decimal",
+          "text": "Hemoglobin (g/dL)",
+          "required": true
+        },
+        {
+          "linkId": "crp_mg_dL",
+          "type": "decimal",
+          "text": "CRP (mg/dL)",
+          "required": true
+        },
+        {
+          "linkId": "ferritin_ng_mL",
+          "type": "decimal",
+          "text": "Ferritin (ng/mL)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "score",
+          "type": "decimal",
+          "text": "CAR-HEMATOTOX score",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "plt",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='platelet_x10e9_per_L').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "anc",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='anc_per_uL').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hgb",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='hemoglobin_g_dL').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "crp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='crp_mg_dL').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "fer",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='ferritin_ng_mL').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%plt < 75, 2, iif(%plt <= 175, 1, 0)) + iif(%anc < 1200, 1, 0) + iif(%hgb < 9.0, 1, 0) + iif(%crp >= 3.0, 1, 0) + iif(%fer > 2000, 2, iif(%fer >= 650, 1, 0))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "category",
+          "type": "string",
+          "text": "Category (Rejeski 2021 binary)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "plt",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='platelet_x10e9_per_L').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "anc",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='anc_per_uL').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hgb",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='hemoglobin_g_dL').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "crp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='crp_mg_dL').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "fer",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='ferritin_ng_mL').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "iif(%plt < 75, 2, iif(%plt <= 175, 1, 0)) + iif(%anc < 1200, 1, 0) + iif(%hgb < 9.0, 1, 0) + iif(%crp >= 3.0, 1, 0) + iif(%fer > 2000, 2, iif(%fer >= 650, 1, 0))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalScore <= 1, 'HT-low', 'HT-high')"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "category_3tier",
+          "type": "string",
+          "text": "Category (optional 3-tier, secondary validations)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "plt",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='platelet_x10e9_per_L').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "anc",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='anc_per_uL').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hgb",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='hemoglobin_g_dL').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "crp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='crp_mg_dL').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "fer",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='ferritin_ng_mL').answer.valueDecimal.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "iif(%plt < 75, 2, iif(%plt <= 175, 1, 0)) + iif(%anc < 1200, 1, 0) + iif(%hgb < 9.0, 1, 0) + iif(%crp >= 3.0, 1, 0) + iif(%fer > 2000, 2, iif(%fer >= 650, 1, 0))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalScore <= 1, 'low', iif(%totalScore <= 4, 'intermediate', 'high'))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

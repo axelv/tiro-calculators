@@ -1,0 +1,252 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "Afiss",
+  "title": "AFISS — Atrial Fibrillation In Sepsis Score",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Dynamic per-day risk-prediction model that estimates the probability of new-onset atrial fibrillation within the next 24 hours in critically ill adult patients admitted to the ICU with sepsis. Source: Klein Klouwenberg PMC et al., Am J Respir Crit Care Med 2017;195(2):205-211 (a.k.a. SAFE score).",
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "age",
+          "type": "decimal",
+          "text": "Age (years)",
+          "required": true
+        },
+        {
+          "linkId": "bmi",
+          "type": "decimal",
+          "text": "Body mass index (kg/m²)",
+          "required": true
+        },
+        {
+          "linkId": "immunocompromised",
+          "type": "coding",
+          "text": "Immunocompromised status",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/afiss",
+                "code": "no",
+                "display": "Not immunocompromised"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/afiss",
+                "code": "yes",
+                "display": "Immunocompromised"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "septic_shock",
+          "type": "coding",
+          "text": "Septic shock",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/afiss",
+                "code": "no",
+                "display": "No septic shock"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/afiss",
+                "code": "yes",
+                "display": "Septic shock"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "vasopressor_inotrope",
+          "type": "coding",
+          "text": "Vasopressor or inotrope use",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/afiss",
+                "code": "no",
+                "display": "No vasopressor/inotrope"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/afiss",
+                "code": "yes",
+                "display": "Vasopressor/inotrope"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "crp",
+          "type": "decimal",
+          "text": "C-reactive protein (mg/L)",
+          "required": true
+        },
+        {
+          "linkId": "wbc",
+          "type": "decimal",
+          "text": "White blood cell count (×10⁹/L)",
+          "required": true
+        },
+        {
+          "linkId": "renal_failure",
+          "type": "coding",
+          "text": "Renal failure (KDIGO AKI or RRT)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/afiss",
+                "code": "no",
+                "display": "No renal failure"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/afiss",
+                "code": "yes",
+                "display": "Renal failure"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "potassium",
+          "type": "decimal",
+          "text": "Serum potassium (mmol/L)",
+          "required": true
+        },
+        {
+          "linkId": "fio2",
+          "type": "decimal",
+          "text": "Fraction of inspired oxygen (FiO₂, 0.21–1.0)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "risk_factor_count",
+          "type": "decimal",
+          "text": "Adverse risk-factor count (heuristic surrogate; see README)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='immunocompromised').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='septic_shock').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='vasopressor_inotrope').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_failure').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value >= 75, 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='fio2').answer.value >= 0.6, 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='crp').answer.value >= 300, 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='potassium').answer.value >= 5.0 or %resource.item.where(linkId='inputs').item.where(linkId='potassium').answer.value <= 3.0, 1, 0)"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_tier",
+          "type": "string",
+          "text": "Operational risk tier (Low / Moderate / High)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif((iif(%resource.item.where(linkId='inputs').item.where(linkId='immunocompromised').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='septic_shock').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='vasopressor_inotrope').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_failure').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value >= 75, 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='fio2').answer.value >= 0.6, 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='crp').answer.value >= 300, 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='potassium').answer.value >= 5.0 or %resource.item.where(linkId='inputs').item.where(linkId='potassium').answer.value <= 3.0, 1, 0)) >= 3, 'High', iif((iif(%resource.item.where(linkId='inputs').item.where(linkId='immunocompromised').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='septic_shock').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='vasopressor_inotrope').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_failure').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value >= 75, 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='fio2').answer.value >= 0.6, 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='crp').answer.value >= 300, 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='potassium').answer.value >= 5.0 or %resource.item.where(linkId='inputs').item.where(linkId='potassium').answer.value <= 3.0, 1, 0)) >= 1, 'Moderate', 'Low'))"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

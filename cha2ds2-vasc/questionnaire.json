@@ -1,0 +1,488 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "Cha2ds2Vasc",
+  "title": "CHA₂DS₂-VASc Score for Atrial Fibrillation Stroke Risk",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Clinical prediction rule for estimating the annual risk of stroke and systemic thromboembolism in patients with non-valvular atrial fibrillation. Original variant (max 9, including the female-sex point). Source: Lip GYH et al., Chest 2010;137(2):263–272; Friberg L et al., Eur Heart J 2012;33(12):1500–1510.",
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "age_band",
+          "text": "Age",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "lt-65",
+                "display": "< 65 years"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "65-74",
+                "display": "65–74 years"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 2
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "ge-75",
+                "display": "≥ 75 years"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "sex",
+          "text": "Sex",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "male",
+                "display": "Male"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "female",
+                "display": "Female"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "chf",
+          "text": "Congestive heart failure",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "no",
+                "display": "No CHF"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "yes",
+                "display": "CHF"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "hypertension",
+          "text": "Hypertension",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "no",
+                "display": "No hypertension"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "yes",
+                "display": "Hypertension"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "diabetes",
+          "text": "Diabetes mellitus",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "no",
+                "display": "No diabetes"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "yes",
+                "display": "Diabetes"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "stroke_tia_te",
+          "text": "Prior stroke, TIA, or systemic thromboembolism",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "no",
+                "display": "No prior stroke / TIA / TE"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 2
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "yes",
+                "display": "Prior stroke / TIA / TE"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "vascular_disease",
+          "text": "Vascular disease (prior MI, peripheral artery disease, or aortic plaque)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "no",
+                "display": "No vascular disease"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/cha2ds2-vasc",
+                "code": "yes",
+                "display": "Vascular disease"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/variable",
+          "valueExpression": {
+            "name": "totalScore",
+            "language": "text/fhirpath",
+            "expression": "%resource.item.where(linkId='inputs').item.answer.value.weight().sum()"
+          }
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/variable",
+          "valueExpression": {
+            "name": "sexFemale",
+            "language": "text/fhirpath",
+            "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code = 'female'"
+          }
+        }
+      ],
+      "item": [
+        {
+          "linkId": "score",
+          "text": "CHA₂DS₂-VASc score",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%totalScore"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_band",
+          "text": "Risk band",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalScore >= 7, 'very_high', iif(%totalScore >= 3, 'high', iif(%totalScore = 2, 'moderate', iif(%totalScore = 1, 'low_moderate', 'low'))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "annual_stroke_risk_friberg_2012_percent",
+          "text": "Annual stroke risk (Friberg 2012, % per year)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalScore = 9, 12.2, iif(%totalScore = 8, 10.8, iif(%totalScore = 7, 11.2, iif(%totalScore = 6, 9.7, iif(%totalScore = 5, 7.2, iif(%totalScore = 4, 4.8, iif(%totalScore = 3, 3.2, iif(%totalScore = 2, 2.2, iif(%totalScore = 1, 0.6, 0.2)))))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "recommendation",
+          "text": "Antithrombotic recommendation (ESC 2020 / AHA-ACC-HRS 2023)",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%sexFemale and %totalScore = 1, 'No antithrombotic therapy (female with sex point only — low-risk equivalent to male score 0).', iif(%sexFemale, iif(%totalScore >= 3, 'OAC recommended (Class I) — DOAC preferred in non-valvular AF unless contraindicated.', iif(%totalScore = 2, 'Consider OAC (Class IIa) — individualize based on bleeding risk and patient preference.', 'No antithrombotic therapy.')), iif(%totalScore >= 2, 'OAC recommended (Class I) — DOAC preferred in non-valvular AF unless contraindicated.', iif(%totalScore = 1, 'Consider OAC (Class IIa) — individualize based on bleeding risk and patient preference.', 'No antithrombotic therapy. Truly low-risk.'))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

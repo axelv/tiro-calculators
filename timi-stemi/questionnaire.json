@@ -1,0 +1,481 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "TimiStemi",
+  "title": "TIMI Risk Score for STEMI",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Bedside clinical prediction rule that estimates 30-day all-cause mortality in patients presenting with ST-elevation myocardial infarction, using eight readily available clinical variables. Source: Morrow DA et al., Circulation 2000;102(17):2031–2037 (InTIME-II substudy).",
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "age_band",
+          "text": "Age",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "lt-65",
+                "display": "< 65 years"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 2
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "65-74",
+                "display": "65–74 years"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 3
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "ge-75",
+                "display": "≥ 75 years"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "dm_htn_angina",
+          "text": "History of diabetes, hypertension, or angina",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "no",
+                "display": "No DM / HTN / angina"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "yes",
+                "display": "DM, HTN, or angina"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "sbp_lt_100",
+          "text": "Systolic blood pressure < 100 mmHg",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "no",
+                "display": "SBP ≥ 100 mmHg"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 3
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "yes",
+                "display": "SBP < 100 mmHg"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "hr_gt_100",
+          "text": "Heart rate > 100 bpm",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "no",
+                "display": "HR ≤ 100 bpm"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 2
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "yes",
+                "display": "HR > 100 bpm"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "killip_2_4",
+          "text": "Killip class II–IV (signs of heart failure)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "no",
+                "display": "Killip I (no CHF signs)"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 2
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "yes",
+                "display": "Killip II–IV"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "weight_lt_67",
+          "text": "Weight < 67 kg",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "no",
+                "display": "Weight ≥ 67 kg"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "yes",
+                "display": "Weight < 67 kg"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "anterior_or_lbbb",
+          "text": "Anterior ST-elevation or new/presumed-new LBBB",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "no",
+                "display": "Non-anterior STEMI, no LBBB"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "yes",
+                "display": "Anterior STEMI or LBBB"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "ttt_gt_4h",
+          "text": "Time from symptom onset to reperfusion > 4 hours",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "no",
+                "display": "Time-to-treatment ≤ 4 h"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/timi-stemi",
+                "code": "yes",
+                "display": "Time-to-treatment > 4 h"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "score",
+          "text": "TIMI Risk Score (0–14)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.answer.value.weight().sum()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%totalScore"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "mortality_30d_pct",
+          "text": "30-day all-cause mortality (%)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.answer.value.weight().sum()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalScore >= 9, 35.9, iif(%totalScore = 8, 26.8, iif(%totalScore = 7, 23.4, iif(%totalScore = 6, 16.1, iif(%totalScore = 5, 12.4, iif(%totalScore = 4, 7.3, iif(%totalScore = 3, 4.4, iif(%totalScore = 2, 2.2, iif(%totalScore = 1, 1.6, 0.8)))))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

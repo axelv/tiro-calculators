@@ -1,0 +1,1140 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "OttawaHfRisk",
+  "title": "Ottawa Heart Failure Risk Scale (OHFRS)",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Stratifies emergency-department patients with acute decompensated heart failure (after initial ED therapy) by their risk of short-term serious adverse events. Supports the basic 10-item variant (1 point per criterion, range 0–10) and the quantitative variant with NT-proBNP (weighted, range 0–15). Source: Stiell IG et al., Acad Emerg Med 2013;20(1):17–26; Stiell IG et al., Acad Emerg Med 2017;24(3):316–327.",
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "variant",
+          "text": "Scoring variant",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "basic",
+                "display": "Basic OHFRS (10 items)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "quantitative",
+                "display": "Quantitative OHFRS (with NT-proBNP)"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "history_stroke_or_tia",
+          "text": "History of stroke or TIA",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "no",
+                "display": "No prior stroke/TIA"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "yes",
+                "display": "Prior stroke/TIA"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "history_intubation_resp_distress",
+          "text": "History of intubation for respiratory distress",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "no",
+                "display": "No prior intubation"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "yes",
+                "display": "Prior intubation for respiratory distress"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "hr_arrival_ge_110",
+          "text": "Heart rate ≥ 110 bpm on ED arrival",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "no",
+                "display": "Arrival HR < 110"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "yes",
+                "display": "Arrival HR ≥ 110"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "sao2_arrival_lt_90",
+          "text": "SaO₂ < 90 % on arrival (room air or usual home O₂)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "no",
+                "display": "Arrival SaO₂ ≥ 90%"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "yes",
+                "display": "Arrival SaO₂ < 90%"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "walk_test_hr_ge_110_or_unable",
+          "text": "Walk test: HR ≥ 110 bpm during 3-minute walk (or unable to perform)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "no",
+                "display": "Walk-test HR < 110 (test completed)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "yes",
+                "display": "Walk-test HR ≥ 110 or unable to perform"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "walk_test_room_air_sao2_lt_90_or_unable",
+          "text": "Walk test: room-air SaO₂ < 90 % during/after 3-minute walk (or unable). Basic variant only.",
+          "type": "coding",
+          "required": true,
+          "enableWhen": [
+            {
+              "question": "variant",
+              "operator": "=",
+              "answerCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "basic"
+              }
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "no",
+                "display": "Walk-test SaO₂ ≥ 90% (test completed)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "yes",
+                "display": "Walk-test SaO₂ < 90% or unable to perform"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "ecg_new_ischemia",
+          "text": "New ischemic changes on ECG",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "no",
+                "display": "No new ECG ischemia"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "yes",
+                "display": "New ECG ischemic changes"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "urea_ge_12_mmol_l",
+          "text": "Urea ≥ 12 mmol/L (BUN ≥ 33 mg/dL)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "no",
+                "display": "Urea < 12 mmol/L"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "yes",
+                "display": "Urea ≥ 12 mmol/L"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "serum_co2_ge_35_mmol_l",
+          "text": "Serum CO₂ (HCO₃) ≥ 35 mmol/L",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "no",
+                "display": "Serum CO₂ < 35 mmol/L"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "yes",
+                "display": "Serum CO₂ ≥ 35 mmol/L"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "troponin_elevated_to_mi_level",
+          "text": "Troponin elevated to MI level",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "no",
+                "display": "Troponin not elevated to MI level"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "yes",
+                "display": "Troponin elevated to MI level"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "nt_probnp_ge_5000_ng_l",
+          "text": "NT-proBNP ≥ 5 000 ng/L. Quantitative variant only.",
+          "type": "coding",
+          "required": true,
+          "enableWhen": [
+            {
+              "question": "variant",
+              "operator": "=",
+              "answerCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "quantitative"
+              }
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "no",
+                "display": "NT-proBNP < 5 000 ng/L"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ottawa-hf-risk",
+                "code": "yes",
+                "display": "NT-proBNP ≥ 5 000 ng/L"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "score_basic",
+          "text": "OHFRS — basic score (0–10)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "histStroke",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='history_stroke_or_tia').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "histIntub",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='history_intubation_resp_distress').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hrArr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='hr_arrival_ge_110').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sao2Arr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='sao2_arrival_lt_90').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "walkHr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='walk_test_hr_ge_110_or_unable').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "walkSao2",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='walk_test_room_air_sao2_lt_90_or_unable').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ecgIsch",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='ecg_new_ischemia').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "urea",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='urea_ge_12_mmol_l').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "co2",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='serum_co2_ge_35_mmol_l').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "trop",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='troponin_elevated_to_mi_level').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%histStroke, 1, 0) + iif(%histIntub, 1, 0) + iif(%hrArr, 1, 0) + iif(%sao2Arr, 1, 0) + iif(%walkHr, 1, 0) + iif(%walkSao2, 1, 0) + iif(%ecgIsch, 1, 0) + iif(%urea, 1, 0) + iif(%co2, 1, 0) + iif(%trop, 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "score_quantitative",
+          "text": "OHFRS — quantitative score (0–15)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "histStroke",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='history_stroke_or_tia').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "histIntub",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='history_intubation_resp_distress').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hrArr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='hr_arrival_ge_110').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sao2Arr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='sao2_arrival_lt_90').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "walkHr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='walk_test_hr_ge_110_or_unable').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ecgIsch",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='ecg_new_ischemia').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "urea",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='urea_ge_12_mmol_l').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "co2",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='serum_co2_ge_35_mmol_l').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "trop",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='troponin_elevated_to_mi_level').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ntpro",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='nt_probnp_ge_5000_ng_l').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%histStroke, 1, 0) + iif(%histIntub, 2, 0) + iif(%hrArr, 2, 0) + iif(%sao2Arr, 1, 0) + iif(%walkHr, 1, 0) + iif(%ecgIsch, 2, 0) + iif(%urea, 1, 0) + iif(%co2, 2, 0) + iif(%trop, 2, 0) + iif(%ntpro, 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "score",
+          "text": "OHFRS — active score (per chosen variant)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "variantCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='variant').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "histStroke",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='history_stroke_or_tia').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "histIntub",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='history_intubation_resp_distress').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hrArr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='hr_arrival_ge_110').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sao2Arr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='sao2_arrival_lt_90').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "walkHr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='walk_test_hr_ge_110_or_unable').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "walkSao2",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='walk_test_room_air_sao2_lt_90_or_unable').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ecgIsch",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='ecg_new_ischemia').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "urea",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='urea_ge_12_mmol_l').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "co2",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='serum_co2_ge_35_mmol_l').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "trop",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='troponin_elevated_to_mi_level').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ntpro",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='nt_probnp_ge_5000_ng_l').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%variantCode = 'quantitative', iif(%histStroke, 1, 0) + iif(%histIntub, 2, 0) + iif(%hrArr, 2, 0) + iif(%sao2Arr, 1, 0) + iif(%walkHr, 1, 0) + iif(%ecgIsch, 2, 0) + iif(%urea, 1, 0) + iif(%co2, 2, 0) + iif(%trop, 2, 0) + iif(%ntpro, 1, 0), iif(%histStroke, 1, 0) + iif(%histIntub, 1, 0) + iif(%hrArr, 1, 0) + iif(%sao2Arr, 1, 0) + iif(%walkHr, 1, 0) + iif(%walkSao2, 1, 0) + iif(%ecgIsch, 1, 0) + iif(%urea, 1, 0) + iif(%co2, 1, 0) + iif(%trop, 1, 0))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_band",
+          "text": "Risk band (basic-variant bands)",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "histStroke",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='history_stroke_or_tia').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "histIntub",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='history_intubation_resp_distress').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hrArr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='hr_arrival_ge_110').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sao2Arr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='sao2_arrival_lt_90').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "walkHr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='walk_test_hr_ge_110_or_unable').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "walkSao2",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='walk_test_room_air_sao2_lt_90_or_unable').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ecgIsch",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='ecg_new_ischemia').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "urea",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='urea_ge_12_mmol_l').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "co2",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='serum_co2_ge_35_mmol_l').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "trop",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='troponin_elevated_to_mi_level').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scoreBasic",
+                "language": "text/fhirpath",
+                "expression": "iif(%histStroke, 1, 0) + iif(%histIntub, 1, 0) + iif(%hrArr, 1, 0) + iif(%sao2Arr, 1, 0) + iif(%walkHr, 1, 0) + iif(%walkSao2, 1, 0) + iif(%ecgIsch, 1, 0) + iif(%urea, 1, 0) + iif(%co2, 1, 0) + iif(%trop, 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%scoreBasic = 0, 'low', iif(%scoreBasic = 1, 'low_intermediate', iif(%scoreBasic = 2, 'intermediate', iif(%scoreBasic <= 4, 'high', 'very_high'))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "sae_14d_pct_approx",
+          "text": "Approximate 14-day SAE risk (%) — basic-variant midpoints",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "histStroke",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='history_stroke_or_tia').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "histIntub",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='history_intubation_resp_distress').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hrArr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='hr_arrival_ge_110').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sao2Arr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='sao2_arrival_lt_90').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "walkHr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='walk_test_hr_ge_110_or_unable').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "walkSao2",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='walk_test_room_air_sao2_lt_90_or_unable').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ecgIsch",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='ecg_new_ischemia').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "urea",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='urea_ge_12_mmol_l').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "co2",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='serum_co2_ge_35_mmol_l').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "trop",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='troponin_elevated_to_mi_level').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scoreBasic",
+                "language": "text/fhirpath",
+                "expression": "iif(%histStroke, 1, 0) + iif(%histIntub, 1, 0) + iif(%hrArr, 1, 0) + iif(%sao2Arr, 1, 0) + iif(%walkHr, 1, 0) + iif(%walkSao2, 1, 0) + iif(%ecgIsch, 1, 0) + iif(%urea, 1, 0) + iif(%co2, 1, 0) + iif(%trop, 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%scoreBasic = 0, 2.8, iif(%scoreBasic = 1, 6.0, iif(%scoreBasic = 2, 12.0, iif(%scoreBasic = 3, 22.0, iif(%scoreBasic = 4, 35.0, 89.0)))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "disposition",
+          "text": "Disposition guidance (cutoff ≥ 2 = preferred operating point)",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "histStroke",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='history_stroke_or_tia').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "histIntub",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='history_intubation_resp_distress').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hrArr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='hr_arrival_ge_110').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sao2Arr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='sao2_arrival_lt_90').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "walkHr",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='walk_test_hr_ge_110_or_unable').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "walkSao2",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='walk_test_room_air_sao2_lt_90_or_unable').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ecgIsch",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='ecg_new_ischemia').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "urea",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='urea_ge_12_mmol_l').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "co2",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='serum_co2_ge_35_mmol_l').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "trop",
+                "language": "text/fhirpath",
+                "expression": "%resource.repeat(item).where(linkId='troponin_elevated_to_mi_level').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scoreBasic",
+                "language": "text/fhirpath",
+                "expression": "iif(%histStroke, 1, 0) + iif(%histIntub, 1, 0) + iif(%hrArr, 1, 0) + iif(%sao2Arr, 1, 0) + iif(%walkHr, 1, 0) + iif(%walkSao2, 1, 0) + iif(%ecgIsch, 1, 0) + iif(%urea, 1, 0) + iif(%co2, 1, 0) + iif(%trop, 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%scoreBasic <= 1, 'discharge_with_followup', 'admit_observe')"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

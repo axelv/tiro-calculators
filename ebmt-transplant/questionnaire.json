@@ -1,0 +1,455 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "EbmtTransplant",
+  "title": "EBMT (Gratwohl) Risk Score for Allogeneic Hematopoietic Stem Cell Transplantation",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Pre-transplant clinical prediction rule (sum of five 0/1/2-point components, range 0–7) for stratifying 5-year overall survival and transplant-related mortality in candidates for allogeneic HSCT. Source: Gratwohl A et al., Lancet 1998;352(9134):1087–1092; Gratwohl A et al., Cancer 2009;115(20):4715–4726; Gratwohl A, Bone Marrow Transplantation 2012;47(6):749–756.",
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "age_band",
+          "text": "Age of recipient at transplant",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ebmt-transplant",
+                "code": "lt_20",
+                "display": "< 20 years"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ebmt-transplant",
+                "code": "20_40",
+                "display": "20–40 years"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 2
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ebmt-transplant",
+                "code": "gt_40",
+                "display": "> 40 years"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "disease_stage",
+          "text": "Disease stage at transplant",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ebmt-transplant",
+                "code": "early",
+                "display": "Early (untreated / first remission / first chronic phase)"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ebmt-transplant",
+                "code": "intermediate",
+                "display": "Intermediate (CR ≥ 2, partial remission, accelerated phase)"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 2
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ebmt-transplant",
+                "code": "advanced",
+                "display": "Advanced (active / refractory / blast crisis)"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "donor_type",
+          "text": "Donor type",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ebmt-transplant",
+                "code": "sibling",
+                "display": "HLA-identical sibling donor"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ebmt-transplant",
+                "code": "unrelated",
+                "display": "Unrelated donor"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "sex_match",
+          "text": "Donor → recipient sex match",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ebmt-transplant",
+                "code": "other",
+                "display": "Other donor → recipient sex combination"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ebmt-transplant",
+                "code": "female_to_male",
+                "display": "Female donor → male recipient"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "interval_dx_to_hct",
+          "text": "Time from diagnosis to HCT",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 0
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ebmt-transplant",
+                "code": "le_12_or_cr1",
+                "display": "≤ 12 months (or transplanted in CR1)"
+              }
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/itemWeight",
+                  "valueDecimal": 1
+                }
+              ],
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ebmt-transplant",
+                "code": "gt_12",
+                "display": "> 12 months (and not in CR1)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "score",
+          "text": "EBMT risk score (0–7)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.answer.value.weight().sum()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%totalScore"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_category",
+          "text": "Risk category",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.answer.value.weight().sum()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalScore <= 2, 'Low', iif(%totalScore <= 4, 'Intermediate', 'High'))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "os_5yr_pct",
+          "text": "Predicted 5-year overall survival (%)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.answer.value.weight().sum()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalScore = 0, 71, iif(%totalScore = 1, 63, iif(%totalScore = 2, 55, iif(%totalScore = 3, 47, iif(%totalScore = 4, 38, iif(%totalScore = 5, 32, iif(%totalScore = 6, 26, 24)))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "trm_5yr_pct",
+          "text": "Predicted 5-year transplant-related mortality (%)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.answer.value.weight().sum()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalScore = 0, 14, iif(%totalScore = 1, 20, iif(%totalScore = 2, 26, iif(%totalScore = 3, 32, iif(%totalScore = 4, 38, iif(%totalScore = 5, 46, iif(%totalScore = 6, 52, 56)))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "clinical_interpretation",
+          "text": "Clinical interpretation",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.answer.value.weight().sum()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalScore <= 2, 'Acceptable transplant risk; standard allo-HCT pathway is appropriate.', iif(%totalScore <= 4, 'Counsel about substantial mortality risk; consider HCT-CI co-assessment, optimisation of modifiable factors, and reduced-intensity conditioning where indicated.', 'Discuss alternative strategies — clinical-trial enrolment, RIC, alternative graft source, or non-transplant approaches; expected 5-yr OS <30%.'))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

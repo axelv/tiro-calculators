@@ -1,0 +1,656 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "SeattleHeartFailure",
+  "title": "Seattle Heart Failure Model",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Multivariate Cox proportional-hazards model that predicts survival in ambulatory adult patients with chronic heart failure and quantifies the projected effect of evidence-based therapies. Source: Levy WC, Mozaffarian D, Linker DT, et al. Circulation 2006;113(11):1424-1433.",
+  "item": [
+    {
+      "linkId": "inputs",
+      "text": "Inputs",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "age",
+          "text": "Age (years)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "sex",
+          "text": "Sex",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "male",
+                "display": "Male"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "female",
+                "display": "Female"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "ischemic_etiology",
+          "text": "Ischemic etiology",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "no",
+                "display": "Non-ischemic etiology"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "yes",
+                "display": "Ischemic etiology"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "nyha_class",
+          "text": "NYHA functional class",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "I",
+                "display": "NYHA I"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "II",
+                "display": "NYHA II"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "III",
+                "display": "NYHA III"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "IV",
+                "display": "NYHA IV"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "weight_kg",
+          "text": "Weight (kg)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "ejection_fraction",
+          "text": "Ejection fraction (%)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "systolic_bp",
+          "text": "Systolic blood pressure (mmHg)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "sodium",
+          "text": "Serum sodium (mmol/L)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "hemoglobin",
+          "text": "Hemoglobin (g/dL)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "lymphocytes_pct",
+          "text": "Lymphocytes (% of WBC)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "uric_acid",
+          "text": "Uric acid (mg/dL)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "total_cholesterol",
+          "text": "Total cholesterol (mg/dL)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "furosemide_dose",
+          "text": "Furosemide dose (mg/day p.o.)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "torsemide_dose",
+          "text": "Torsemide dose (mg/day p.o.)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "bumetanide_dose",
+          "text": "Bumetanide dose (mg/day p.o.)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "metolazone_dose",
+          "text": "Metolazone dose (mg/day p.o.)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "hctz_dose",
+          "text": "Hydrochlorothiazide dose (mg/day p.o.)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "ace_inhibitor",
+          "text": "ACE inhibitor",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "no",
+                "display": "No ACE inhibitor"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "yes",
+                "display": "On ACE inhibitor"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "arb",
+          "text": "Angiotensin receptor blocker (ARB)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "no",
+                "display": "No ARB"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "yes",
+                "display": "On ARB"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "beta_blocker",
+          "text": "Beta-blocker (carvedilol/bisoprolol/metoprolol succinate)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "no",
+                "display": "No beta-blocker"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "yes",
+                "display": "On beta-blocker"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "statin",
+          "text": "Statin",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "no",
+                "display": "No statin"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "yes",
+                "display": "On statin"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "allopurinol",
+          "text": "Allopurinol",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "no",
+                "display": "No allopurinol"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "yes",
+                "display": "On allopurinol"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "k_sparing",
+          "text": "Potassium-sparing diuretic / aldosterone antagonist",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "no",
+                "display": "No K-sparing diuretic"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "yes",
+                "display": "On K-sparing diuretic"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "device",
+          "text": "Device",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "none",
+                "display": "No device"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "bivent_pacer",
+                "display": "Biventricular pacer (CRT-P)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "icd",
+                "display": "ICD"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/seattle-heart-failure",
+                "code": "bivent_icd",
+                "display": "Biventricular ICD (CRT-D)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "text": "Outputs",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "survival_1y",
+          "text": "1-year survival probability",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lpTotal",
+                "language": "text/fhirpath",
+                "expression": "0.08618 * (%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value / 10) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code = 'male', 0.08527, 0) + 0.47000 * iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'I', 1, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'II', 2, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'III', 3, 4))) + 0.02956 * (100 / %resource.item.where(linkId='inputs').item.where(linkId='ejection_fraction').answer.value) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ischemic_etiology').answer.value.code = 'yes', 0.30310, 0) + (-0.13127) * (iif(%resource.item.where(linkId='inputs').item.where(linkId='systolic_bp').answer.value > 160, 160, %resource.item.where(linkId='inputs').item.where(linkId='systolic_bp').answer.value) / 10) + 0.16382 * ((%resource.item.where(linkId='inputs').item.where(linkId='furosemide_dose').answer.value + 2 * %resource.item.where(linkId='inputs').item.where(linkId='torsemide_dose').answer.value + 26.7 * %resource.item.where(linkId='inputs').item.where(linkId='bumetanide_dose').answer.value + 40 * %resource.item.where(linkId='inputs').item.where(linkId='metolazone_dose').answer.value + 3.2 * %resource.item.where(linkId='inputs').item.where(linkId='hctz_dose').answer.value) / %resource.item.where(linkId='inputs').item.where(linkId='weight_kg').answer.value) + 0.04879 * (138 - iif(%resource.item.where(linkId='inputs').item.where(linkId='sodium').answer.value > 138, 138, %resource.item.where(linkId='inputs').item.where(linkId='sodium').answer.value)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value < 16, 0.11688 * (16 - %resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value), 0.28968 * (%resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value - 16)) + (-0.10870) * (iif(%resource.item.where(linkId='inputs').item.where(linkId='lymphocytes_pct').answer.value > 47, 47, %resource.item.where(linkId='inputs').item.where(linkId='lymphocytes_pct').answer.value) / 5) + 0.06203 * iif(%resource.item.where(linkId='inputs').item.where(linkId='uric_acid').answer.value < 3.4, 3.4, %resource.item.where(linkId='inputs').item.where(linkId='uric_acid').answer.value) + 0.79121 * (100 / %resource.item.where(linkId='inputs').item.where(linkId='total_cholesterol').answer.value) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ace_inhibitor').answer.value.code = 'yes', -0.26136, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='arb').answer.value.code = 'yes', -0.16252, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='beta_blocker').answer.value.code = 'yes', -0.41552, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='statin').answer.value.code = 'yes', -0.46204, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='allopurinol').answer.value.code = 'yes', 0.45178, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='k_sparing').answer.value.code = 'yes', -0.30111, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'icd', -0.31471, iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'bivent_icd', -0.23572, iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'bivent_pacer', -0.4463, 0)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "(-0.0405 * 1 * %lpTotal.exp()).exp()"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "survival_2y",
+          "text": "2-year survival probability",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lpTotal",
+                "language": "text/fhirpath",
+                "expression": "0.08618 * (%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value / 10) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code = 'male', 0.08527, 0) + 0.47000 * iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'I', 1, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'II', 2, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'III', 3, 4))) + 0.02956 * (100 / %resource.item.where(linkId='inputs').item.where(linkId='ejection_fraction').answer.value) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ischemic_etiology').answer.value.code = 'yes', 0.30310, 0) + (-0.13127) * (iif(%resource.item.where(linkId='inputs').item.where(linkId='systolic_bp').answer.value > 160, 160, %resource.item.where(linkId='inputs').item.where(linkId='systolic_bp').answer.value) / 10) + 0.16382 * ((%resource.item.where(linkId='inputs').item.where(linkId='furosemide_dose').answer.value + 2 * %resource.item.where(linkId='inputs').item.where(linkId='torsemide_dose').answer.value + 26.7 * %resource.item.where(linkId='inputs').item.where(linkId='bumetanide_dose').answer.value + 40 * %resource.item.where(linkId='inputs').item.where(linkId='metolazone_dose').answer.value + 3.2 * %resource.item.where(linkId='inputs').item.where(linkId='hctz_dose').answer.value) / %resource.item.where(linkId='inputs').item.where(linkId='weight_kg').answer.value) + 0.04879 * (138 - iif(%resource.item.where(linkId='inputs').item.where(linkId='sodium').answer.value > 138, 138, %resource.item.where(linkId='inputs').item.where(linkId='sodium').answer.value)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value < 16, 0.11688 * (16 - %resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value), 0.28968 * (%resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value - 16)) + (-0.10870) * (iif(%resource.item.where(linkId='inputs').item.where(linkId='lymphocytes_pct').answer.value > 47, 47, %resource.item.where(linkId='inputs').item.where(linkId='lymphocytes_pct').answer.value) / 5) + 0.06203 * iif(%resource.item.where(linkId='inputs').item.where(linkId='uric_acid').answer.value < 3.4, 3.4, %resource.item.where(linkId='inputs').item.where(linkId='uric_acid').answer.value) + 0.79121 * (100 / %resource.item.where(linkId='inputs').item.where(linkId='total_cholesterol').answer.value) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ace_inhibitor').answer.value.code = 'yes', -0.26136, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='arb').answer.value.code = 'yes', -0.16252, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='beta_blocker').answer.value.code = 'yes', -0.41552, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='statin').answer.value.code = 'yes', -0.46204, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='allopurinol').answer.value.code = 'yes', 0.45178, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='k_sparing').answer.value.code = 'yes', -0.30111, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'icd', -0.31471, iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'bivent_icd', -0.23572, iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'bivent_pacer', -0.4463, 0)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "(-0.0405 * 2 * %lpTotal.exp()).exp()"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "survival_3y",
+          "text": "3-year survival probability",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lpTotal",
+                "language": "text/fhirpath",
+                "expression": "0.08618 * (%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value / 10) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code = 'male', 0.08527, 0) + 0.47000 * iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'I', 1, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'II', 2, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'III', 3, 4))) + 0.02956 * (100 / %resource.item.where(linkId='inputs').item.where(linkId='ejection_fraction').answer.value) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ischemic_etiology').answer.value.code = 'yes', 0.30310, 0) + (-0.13127) * (iif(%resource.item.where(linkId='inputs').item.where(linkId='systolic_bp').answer.value > 160, 160, %resource.item.where(linkId='inputs').item.where(linkId='systolic_bp').answer.value) / 10) + 0.16382 * ((%resource.item.where(linkId='inputs').item.where(linkId='furosemide_dose').answer.value + 2 * %resource.item.where(linkId='inputs').item.where(linkId='torsemide_dose').answer.value + 26.7 * %resource.item.where(linkId='inputs').item.where(linkId='bumetanide_dose').answer.value + 40 * %resource.item.where(linkId='inputs').item.where(linkId='metolazone_dose').answer.value + 3.2 * %resource.item.where(linkId='inputs').item.where(linkId='hctz_dose').answer.value) / %resource.item.where(linkId='inputs').item.where(linkId='weight_kg').answer.value) + 0.04879 * (138 - iif(%resource.item.where(linkId='inputs').item.where(linkId='sodium').answer.value > 138, 138, %resource.item.where(linkId='inputs').item.where(linkId='sodium').answer.value)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value < 16, 0.11688 * (16 - %resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value), 0.28968 * (%resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value - 16)) + (-0.10870) * (iif(%resource.item.where(linkId='inputs').item.where(linkId='lymphocytes_pct').answer.value > 47, 47, %resource.item.where(linkId='inputs').item.where(linkId='lymphocytes_pct').answer.value) / 5) + 0.06203 * iif(%resource.item.where(linkId='inputs').item.where(linkId='uric_acid').answer.value < 3.4, 3.4, %resource.item.where(linkId='inputs').item.where(linkId='uric_acid').answer.value) + 0.79121 * (100 / %resource.item.where(linkId='inputs').item.where(linkId='total_cholesterol').answer.value) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ace_inhibitor').answer.value.code = 'yes', -0.26136, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='arb').answer.value.code = 'yes', -0.16252, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='beta_blocker').answer.value.code = 'yes', -0.41552, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='statin').answer.value.code = 'yes', -0.46204, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='allopurinol').answer.value.code = 'yes', 0.45178, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='k_sparing').answer.value.code = 'yes', -0.30111, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'icd', -0.31471, iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'bivent_icd', -0.23572, iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'bivent_pacer', -0.4463, 0)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "(-0.0405 * 3 * %lpTotal.exp()).exp()"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "survival_5y",
+          "text": "5-year survival probability",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lpTotal",
+                "language": "text/fhirpath",
+                "expression": "0.08618 * (%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value / 10) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code = 'male', 0.08527, 0) + 0.47000 * iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'I', 1, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'II', 2, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'III', 3, 4))) + 0.02956 * (100 / %resource.item.where(linkId='inputs').item.where(linkId='ejection_fraction').answer.value) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ischemic_etiology').answer.value.code = 'yes', 0.30310, 0) + (-0.13127) * (iif(%resource.item.where(linkId='inputs').item.where(linkId='systolic_bp').answer.value > 160, 160, %resource.item.where(linkId='inputs').item.where(linkId='systolic_bp').answer.value) / 10) + 0.16382 * ((%resource.item.where(linkId='inputs').item.where(linkId='furosemide_dose').answer.value + 2 * %resource.item.where(linkId='inputs').item.where(linkId='torsemide_dose').answer.value + 26.7 * %resource.item.where(linkId='inputs').item.where(linkId='bumetanide_dose').answer.value + 40 * %resource.item.where(linkId='inputs').item.where(linkId='metolazone_dose').answer.value + 3.2 * %resource.item.where(linkId='inputs').item.where(linkId='hctz_dose').answer.value) / %resource.item.where(linkId='inputs').item.where(linkId='weight_kg').answer.value) + 0.04879 * (138 - iif(%resource.item.where(linkId='inputs').item.where(linkId='sodium').answer.value > 138, 138, %resource.item.where(linkId='inputs').item.where(linkId='sodium').answer.value)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value < 16, 0.11688 * (16 - %resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value), 0.28968 * (%resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value - 16)) + (-0.10870) * (iif(%resource.item.where(linkId='inputs').item.where(linkId='lymphocytes_pct').answer.value > 47, 47, %resource.item.where(linkId='inputs').item.where(linkId='lymphocytes_pct').answer.value) / 5) + 0.06203 * iif(%resource.item.where(linkId='inputs').item.where(linkId='uric_acid').answer.value < 3.4, 3.4, %resource.item.where(linkId='inputs').item.where(linkId='uric_acid').answer.value) + 0.79121 * (100 / %resource.item.where(linkId='inputs').item.where(linkId='total_cholesterol').answer.value) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ace_inhibitor').answer.value.code = 'yes', -0.26136, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='arb').answer.value.code = 'yes', -0.16252, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='beta_blocker').answer.value.code = 'yes', -0.41552, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='statin').answer.value.code = 'yes', -0.46204, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='allopurinol').answer.value.code = 'yes', 0.45178, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='k_sparing').answer.value.code = 'yes', -0.30111, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'icd', -0.31471, iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'bivent_icd', -0.23572, iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'bivent_pacer', -0.4463, 0)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "(-0.0405 * 5 * %lpTotal.exp()).exp()"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "mean_life_expectancy",
+          "text": "Mean life expectancy (years)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lpTotal",
+                "language": "text/fhirpath",
+                "expression": "0.08618 * (%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value / 10) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code = 'male', 0.08527, 0) + 0.47000 * iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'I', 1, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'II', 2, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'III', 3, 4))) + 0.02956 * (100 / %resource.item.where(linkId='inputs').item.where(linkId='ejection_fraction').answer.value) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ischemic_etiology').answer.value.code = 'yes', 0.30310, 0) + (-0.13127) * (iif(%resource.item.where(linkId='inputs').item.where(linkId='systolic_bp').answer.value > 160, 160, %resource.item.where(linkId='inputs').item.where(linkId='systolic_bp').answer.value) / 10) + 0.16382 * ((%resource.item.where(linkId='inputs').item.where(linkId='furosemide_dose').answer.value + 2 * %resource.item.where(linkId='inputs').item.where(linkId='torsemide_dose').answer.value + 26.7 * %resource.item.where(linkId='inputs').item.where(linkId='bumetanide_dose').answer.value + 40 * %resource.item.where(linkId='inputs').item.where(linkId='metolazone_dose').answer.value + 3.2 * %resource.item.where(linkId='inputs').item.where(linkId='hctz_dose').answer.value) / %resource.item.where(linkId='inputs').item.where(linkId='weight_kg').answer.value) + 0.04879 * (138 - iif(%resource.item.where(linkId='inputs').item.where(linkId='sodium').answer.value > 138, 138, %resource.item.where(linkId='inputs').item.where(linkId='sodium').answer.value)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value < 16, 0.11688 * (16 - %resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value), 0.28968 * (%resource.item.where(linkId='inputs').item.where(linkId='hemoglobin').answer.value - 16)) + (-0.10870) * (iif(%resource.item.where(linkId='inputs').item.where(linkId='lymphocytes_pct').answer.value > 47, 47, %resource.item.where(linkId='inputs').item.where(linkId='lymphocytes_pct').answer.value) / 5) + 0.06203 * iif(%resource.item.where(linkId='inputs').item.where(linkId='uric_acid').answer.value < 3.4, 3.4, %resource.item.where(linkId='inputs').item.where(linkId='uric_acid').answer.value) + 0.79121 * (100 / %resource.item.where(linkId='inputs').item.where(linkId='total_cholesterol').answer.value) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ace_inhibitor').answer.value.code = 'yes', -0.26136, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='arb').answer.value.code = 'yes', -0.16252, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='beta_blocker').answer.value.code = 'yes', -0.41552, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='statin').answer.value.code = 'yes', -0.46204, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='allopurinol').answer.value.code = 'yes', 0.45178, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='k_sparing').answer.value.code = 'yes', -0.30111, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'icd', -0.31471, iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'bivent_icd', -0.23572, iif(%resource.item.where(linkId='inputs').item.where(linkId='device').answer.value.code = 'bivent_pacer', -0.4463, 0)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "1 / (0.0405 * %lpTotal.exp())"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

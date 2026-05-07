@@ -1,0 +1,2179 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "IpssM",
+  "title": "IPSS-M — Molecular International Prognostic Scoring System for MDS",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "IPSS-M integrates clinical, cytogenetic, and molecular features (31 genes) into a continuous log₂-hazard-ratio score for adult patients with myelodysplastic syndromes. Derived and published by Bernard E et al., NEJM Evidence 2022;1(7):EVIDoa2200008; reference R implementation at github.com/papaemmelab/ipssm.",
+  "extension": [],
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "BM_BLAST",
+          "type": "decimal",
+          "text": "Bone marrow blasts (% of nucleated cells)",
+          "required": true
+        },
+        {
+          "linkId": "HB",
+          "type": "decimal",
+          "text": "Hemoglobin (g/dL)",
+          "required": true
+        },
+        {
+          "linkId": "PLT",
+          "type": "decimal",
+          "text": "Platelet count (×10⁹/L)",
+          "required": true
+        },
+        {
+          "linkId": "CYTO_IPSSR",
+          "type": "coding",
+          "text": "IPSS-R cytogenetic category",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "very_good",
+                "display": "Very Good"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "good",
+                "display": "Good"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "intermediate",
+                "display": "Intermediate"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "poor",
+                "display": "Poor"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "very_poor",
+                "display": "Very Poor"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "TP53multi",
+          "type": "coding",
+          "text": "TP53 multi-hit",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "TP53 mono / wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "TP53 multi-hit"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "FLT3",
+          "type": "coding",
+          "text": "FLT3 (ITD or TKD)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "FLT3 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "FLT3 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "MLL_PTD",
+          "type": "coding",
+          "text": "KMT2A (MLL) partial tandem duplication",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "MLL-PTD absent"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "MLL-PTD present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "SF3B1_5q",
+          "type": "coding",
+          "text": "SF3B1 mutated with isolated del(5q)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "SF3B1+del(5q) absent"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "SF3B1+del(5q) present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "SF3B1_alpha",
+          "type": "coding",
+          "text": "SF3B1 favorable phenotype (mutated, no del(5q), no adverse comutation)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "SF3B1-alpha absent"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "SF3B1-alpha present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "NPM1",
+          "type": "coding",
+          "text": "NPM1",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "NPM1 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "NPM1 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "RUNX1",
+          "type": "coding",
+          "text": "RUNX1",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "RUNX1 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "RUNX1 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "NRAS",
+          "type": "coding",
+          "text": "NRAS",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "NRAS wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "NRAS mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "ETV6",
+          "type": "coding",
+          "text": "ETV6",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "ETV6 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "ETV6 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "IDH2",
+          "type": "coding",
+          "text": "IDH2",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "IDH2 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "IDH2 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "CBL",
+          "type": "coding",
+          "text": "CBL",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "CBL wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "CBL mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "EZH2",
+          "type": "coding",
+          "text": "EZH2",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "EZH2 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "EZH2 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "U2AF1",
+          "type": "coding",
+          "text": "U2AF1",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "U2AF1 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "U2AF1 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "SRSF2",
+          "type": "coding",
+          "text": "SRSF2",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "SRSF2 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "SRSF2 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "DNMT3A",
+          "type": "coding",
+          "text": "DNMT3A",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "DNMT3A wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "DNMT3A mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "ASXL1",
+          "type": "coding",
+          "text": "ASXL1",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "ASXL1 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "ASXL1 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "KRAS",
+          "type": "coding",
+          "text": "KRAS",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "KRAS wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "KRAS mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "BCOR",
+          "type": "coding",
+          "text": "BCOR (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "BCOR wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "BCOR mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "BCORL1",
+          "type": "coding",
+          "text": "BCORL1 (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "BCORL1 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "BCORL1 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "CEBPA",
+          "type": "coding",
+          "text": "CEBPA (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "CEBPA wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "CEBPA mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "ETNK1",
+          "type": "coding",
+          "text": "ETNK1 (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "ETNK1 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "ETNK1 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "GATA2",
+          "type": "coding",
+          "text": "GATA2 (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "GATA2 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "GATA2 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "GNB1",
+          "type": "coding",
+          "text": "GNB1 (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "GNB1 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "GNB1 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "IDH1",
+          "type": "coding",
+          "text": "IDH1 (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "IDH1 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "IDH1 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "NF1",
+          "type": "coding",
+          "text": "NF1 (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "NF1 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "NF1 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "PHF6",
+          "type": "coding",
+          "text": "PHF6 (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "PHF6 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "PHF6 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "PPM1D",
+          "type": "coding",
+          "text": "PPM1D (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "PPM1D wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "PPM1D mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "PRPF8",
+          "type": "coding",
+          "text": "PRPF8 (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "PRPF8 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "PRPF8 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "PTPN11",
+          "type": "coding",
+          "text": "PTPN11 (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "PTPN11 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "PTPN11 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "SETBP1",
+          "type": "coding",
+          "text": "SETBP1 (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "SETBP1 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "SETBP1 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "STAG2",
+          "type": "coding",
+          "text": "STAG2 (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "STAG2 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "STAG2 mutated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "WT1",
+          "type": "coding",
+          "text": "WT1 (residual)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "no",
+                "display": "WT1 wild-type"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ipss-m",
+                "code": "yes",
+                "display": "WT1 mutated"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "IPSSM_score",
+          "type": "decimal",
+          "text": "IPSS-M score (log₂ HR)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "BM_BLAST",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='BM_BLAST').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "HB",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='HB').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "PLT",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='PLT').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "BLAST5",
+                "language": "text/fhirpath",
+                "expression": "iif(%BM_BLAST > 20, 20, %BM_BLAST) / 5"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "HB1",
+                "language": "text/fhirpath",
+                "expression": "iif(%HB > 20, 20, %HB)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "TRANSF_PLT100",
+                "language": "text/fhirpath",
+                "expression": "iif(%PLT > 250, 250, %PLT) / 100"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "CYTOVEC",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'very_good', 0, iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'good', 1, iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'intermediate', 2, iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'poor', 3, 4))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "TP53multi_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='TP53multi').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "FLT3_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='FLT3').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "MLL_PTD_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='MLL_PTD').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SF3B1_5q_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='SF3B1_5q').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SF3B1_alpha_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='SF3B1_alpha').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "NPM1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='NPM1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "RUNX1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='RUNX1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "NRAS_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='NRAS').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ETV6_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='ETV6').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "IDH2_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='IDH2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "CBL_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='CBL').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "EZH2_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='EZH2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "U2AF1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='U2AF1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SRSF2_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='SRSF2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "DNMT3A_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='DNMT3A').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ASXL1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='ASXL1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "KRAS_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='KRAS').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "Nres2_raw",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='BCOR').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='BCORL1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='CEBPA').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ETNK1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='GATA2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='GNB1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='IDH1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='NF1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PHF6').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PPM1D').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PRPF8').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PTPN11').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='SETBP1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='STAG2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='WT1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "Nres2",
+                "language": "text/fhirpath",
+                "expression": "iif(%Nres2_raw > 2, 2, %Nres2_raw)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "((%BLAST5 - 0.922) * 0.352 + (%TRANSF_PLT100 - 1.41) * -0.222 + (%HB1 - 9.87) * -0.171 + (%CYTOVEC - 1.39) * 0.287 + (%TP53multi_n - 0.0710) * 1.180 + (%FLT3_n - 0.0108) * 0.798 + (%MLL_PTD_n - 0.0247) * 0.798 + (%SF3B1_5q_n - 0.0166) * 0.504 + (%NPM1_n - 0.0112) * 0.430 + (%RUNX1_n - 0.1260) * 0.423 + (%NRAS_n - 0.0362) * 0.417 + (%ETV6_n - 0.0216) * 0.391 + (%IDH2_n - 0.0429) * 0.379 + (%CBL_n - 0.0473) * 0.295 + (%EZH2_n - 0.0588) * 0.270 + (%U2AF1_n - 0.0866) * 0.247 + (%SRSF2_n - 0.1580) * 0.239 + (%DNMT3A_n - 0.1610) * 0.221 + (%ASXL1_n - 0.2520) * 0.213 + (%KRAS_n - 0.0271) * 0.202 + (%SF3B1_alpha_n - 0.1860) * -0.0794 + (%Nres2 - 0.3880) * 0.231) / 0.6931471805599453"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "IPSSM_category",
+          "type": "string",
+          "text": "IPSS-M risk category",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "BM_BLAST",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='BM_BLAST').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "HB",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='HB').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "PLT",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='PLT').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "BLAST5",
+                "language": "text/fhirpath",
+                "expression": "iif(%BM_BLAST > 20, 20, %BM_BLAST) / 5"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "HB1",
+                "language": "text/fhirpath",
+                "expression": "iif(%HB > 20, 20, %HB)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "TRANSF_PLT100",
+                "language": "text/fhirpath",
+                "expression": "iif(%PLT > 250, 250, %PLT) / 100"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "CYTOVEC",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'very_good', 0, iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'good', 1, iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'intermediate', 2, iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'poor', 3, 4))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "TP53multi_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='TP53multi').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "FLT3_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='FLT3').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "MLL_PTD_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='MLL_PTD').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SF3B1_5q_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='SF3B1_5q').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SF3B1_alpha_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='SF3B1_alpha').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "NPM1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='NPM1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "RUNX1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='RUNX1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "NRAS_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='NRAS').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ETV6_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='ETV6').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "IDH2_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='IDH2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "CBL_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='CBL').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "EZH2_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='EZH2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "U2AF1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='U2AF1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SRSF2_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='SRSF2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "DNMT3A_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='DNMT3A').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ASXL1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='ASXL1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "KRAS_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='KRAS').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "Nres2_raw",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='BCOR').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='BCORL1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='CEBPA').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ETNK1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='GATA2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='GNB1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='IDH1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='NF1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PHF6').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PPM1D').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PRPF8').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PTPN11').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='SETBP1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='STAG2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='WT1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "Nres2",
+                "language": "text/fhirpath",
+                "expression": "iif(%Nres2_raw > 2, 2, %Nres2_raw)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "score",
+                "language": "text/fhirpath",
+                "expression": "((%BLAST5 - 0.922) * 0.352 + (%TRANSF_PLT100 - 1.41) * -0.222 + (%HB1 - 9.87) * -0.171 + (%CYTOVEC - 1.39) * 0.287 + (%TP53multi_n - 0.0710) * 1.180 + (%FLT3_n - 0.0108) * 0.798 + (%MLL_PTD_n - 0.0247) * 0.798 + (%SF3B1_5q_n - 0.0166) * 0.504 + (%NPM1_n - 0.0112) * 0.430 + (%RUNX1_n - 0.1260) * 0.423 + (%NRAS_n - 0.0362) * 0.417 + (%ETV6_n - 0.0216) * 0.391 + (%IDH2_n - 0.0429) * 0.379 + (%CBL_n - 0.0473) * 0.295 + (%EZH2_n - 0.0588) * 0.270 + (%U2AF1_n - 0.0866) * 0.247 + (%SRSF2_n - 0.1580) * 0.239 + (%DNMT3A_n - 0.1610) * 0.221 + (%ASXL1_n - 0.2520) * 0.213 + (%KRAS_n - 0.0271) * 0.202 + (%SF3B1_alpha_n - 0.1860) * -0.0794 + (%Nres2 - 0.3880) * 0.231) / 0.6931471805599453"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%score > 1.5, 'VH', iif(%score > 0.5, 'H', iif(%score > 0, 'MH', iif(%score > -0.5, 'ML', iif(%score > -1.5, 'L', 'VL')))))"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "median_OS_years",
+          "type": "decimal",
+          "text": "Median overall survival (years)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "BM_BLAST",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='BM_BLAST').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "HB",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='HB').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "PLT",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='PLT').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "BLAST5",
+                "language": "text/fhirpath",
+                "expression": "iif(%BM_BLAST > 20, 20, %BM_BLAST) / 5"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "HB1",
+                "language": "text/fhirpath",
+                "expression": "iif(%HB > 20, 20, %HB)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "TRANSF_PLT100",
+                "language": "text/fhirpath",
+                "expression": "iif(%PLT > 250, 250, %PLT) / 100"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "CYTOVEC",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'very_good', 0, iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'good', 1, iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'intermediate', 2, iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'poor', 3, 4))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "TP53multi_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='TP53multi').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "FLT3_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='FLT3').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "MLL_PTD_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='MLL_PTD').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SF3B1_5q_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='SF3B1_5q').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SF3B1_alpha_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='SF3B1_alpha').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "NPM1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='NPM1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "RUNX1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='RUNX1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "NRAS_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='NRAS').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ETV6_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='ETV6').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "IDH2_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='IDH2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "CBL_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='CBL').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "EZH2_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='EZH2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "U2AF1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='U2AF1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SRSF2_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='SRSF2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "DNMT3A_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='DNMT3A').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ASXL1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='ASXL1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "KRAS_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='KRAS').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "Nres2_raw",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='BCOR').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='BCORL1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='CEBPA').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ETNK1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='GATA2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='GNB1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='IDH1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='NF1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PHF6').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PPM1D').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PRPF8').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PTPN11').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='SETBP1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='STAG2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='WT1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "Nres2",
+                "language": "text/fhirpath",
+                "expression": "iif(%Nres2_raw > 2, 2, %Nres2_raw)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "score",
+                "language": "text/fhirpath",
+                "expression": "((%BLAST5 - 0.922) * 0.352 + (%TRANSF_PLT100 - 1.41) * -0.222 + (%HB1 - 9.87) * -0.171 + (%CYTOVEC - 1.39) * 0.287 + (%TP53multi_n - 0.0710) * 1.180 + (%FLT3_n - 0.0108) * 0.798 + (%MLL_PTD_n - 0.0247) * 0.798 + (%SF3B1_5q_n - 0.0166) * 0.504 + (%NPM1_n - 0.0112) * 0.430 + (%RUNX1_n - 0.1260) * 0.423 + (%NRAS_n - 0.0362) * 0.417 + (%ETV6_n - 0.0216) * 0.391 + (%IDH2_n - 0.0429) * 0.379 + (%CBL_n - 0.0473) * 0.295 + (%EZH2_n - 0.0588) * 0.270 + (%U2AF1_n - 0.0866) * 0.247 + (%SRSF2_n - 0.1580) * 0.239 + (%DNMT3A_n - 0.1610) * 0.221 + (%ASXL1_n - 0.2520) * 0.213 + (%KRAS_n - 0.0271) * 0.202 + (%SF3B1_alpha_n - 0.1860) * -0.0794 + (%Nres2 - 0.3880) * 0.231) / 0.6931471805599453"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%score > 1.5, 1.3, iif(%score > 0.5, 2.3, iif(%score > 0, 3.1, iif(%score > -0.5, 4.4, iif(%score > -1.5, 7.1, 11.7)))))"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "AML_transformation_risk",
+          "type": "string",
+          "text": "AML transformation risk (qualitative)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "BM_BLAST",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='BM_BLAST').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "HB",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='HB').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "PLT",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='PLT').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "BLAST5",
+                "language": "text/fhirpath",
+                "expression": "iif(%BM_BLAST > 20, 20, %BM_BLAST) / 5"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "HB1",
+                "language": "text/fhirpath",
+                "expression": "iif(%HB > 20, 20, %HB)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "TRANSF_PLT100",
+                "language": "text/fhirpath",
+                "expression": "iif(%PLT > 250, 250, %PLT) / 100"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "CYTOVEC",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'very_good', 0, iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'good', 1, iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'intermediate', 2, iif(%resource.item.where(linkId='inputs').item.where(linkId='CYTO_IPSSR').answer.value.code = 'poor', 3, 4))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "TP53multi_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='TP53multi').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "FLT3_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='FLT3').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "MLL_PTD_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='MLL_PTD').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SF3B1_5q_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='SF3B1_5q').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SF3B1_alpha_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='SF3B1_alpha').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "NPM1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='NPM1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "RUNX1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='RUNX1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "NRAS_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='NRAS').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ETV6_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='ETV6').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "IDH2_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='IDH2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "CBL_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='CBL').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "EZH2_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='EZH2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "U2AF1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='U2AF1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SRSF2_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='SRSF2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "DNMT3A_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='DNMT3A').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ASXL1_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='ASXL1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "KRAS_n",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='KRAS').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "Nres2_raw",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='BCOR').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='BCORL1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='CEBPA').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ETNK1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='GATA2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='GNB1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='IDH1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='NF1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PHF6').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PPM1D').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PRPF8').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='PTPN11').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='SETBP1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='STAG2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='WT1').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "Nres2",
+                "language": "text/fhirpath",
+                "expression": "iif(%Nres2_raw > 2, 2, %Nres2_raw)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "score",
+                "language": "text/fhirpath",
+                "expression": "((%BLAST5 - 0.922) * 0.352 + (%TRANSF_PLT100 - 1.41) * -0.222 + (%HB1 - 9.87) * -0.171 + (%CYTOVEC - 1.39) * 0.287 + (%TP53multi_n - 0.0710) * 1.180 + (%FLT3_n - 0.0108) * 0.798 + (%MLL_PTD_n - 0.0247) * 0.798 + (%SF3B1_5q_n - 0.0166) * 0.504 + (%NPM1_n - 0.0112) * 0.430 + (%RUNX1_n - 0.1260) * 0.423 + (%NRAS_n - 0.0362) * 0.417 + (%ETV6_n - 0.0216) * 0.391 + (%IDH2_n - 0.0429) * 0.379 + (%CBL_n - 0.0473) * 0.295 + (%EZH2_n - 0.0588) * 0.270 + (%U2AF1_n - 0.0866) * 0.247 + (%SRSF2_n - 0.1580) * 0.239 + (%DNMT3A_n - 0.1610) * 0.221 + (%ASXL1_n - 0.2520) * 0.213 + (%KRAS_n - 0.0271) * 0.202 + (%SF3B1_alpha_n - 0.1860) * -0.0794 + (%Nres2 - 0.3880) * 0.231) / 0.6931471805599453"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%score > 1.5, 'very high', iif(%score > 0.5, 'high', iif(%score > 0, 'intermediate-high', iif(%score > -0.5, 'intermediate-low', iif(%score > -1.5, 'low', 'very low')))))"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

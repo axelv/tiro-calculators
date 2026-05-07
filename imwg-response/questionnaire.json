@@ -1,0 +1,904 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "ImwgResponse",
+  "title": "IMWG Multiple Myeloma Response Criteria (2016)",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Categorical assessment of treatment response in multiple myeloma per the International Myeloma Working Group 2016 consensus update, evaluating from the deepest response (Sustained MRD-negative) down to PD. Source: Kumar S et al., Lancet Oncol 2016;17(8):e328-e346.",
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "serum_m_baseline_g_dL",
+          "text": "Serum M-protein at baseline (g/dL)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "serum_m_current_g_dL",
+          "text": "Serum M-protein, current (g/dL; enter 0 if undetectable on SPEP)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "serum_m_nadir_g_dL",
+          "text": "Serum M-protein nadir / best response (g/dL)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "urine_m_baseline_mg_24h",
+          "text": "Urine M-protein at baseline (mg / 24 h)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "urine_m_current_mg_24h",
+          "text": "Urine M-protein, current (mg / 24 h)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "urine_m_nadir_mg_24h",
+          "text": "Urine M-protein nadir (mg / 24 h)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "serum_ife",
+          "text": "Serum immunofixation (IFE)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "negative",
+                "display": "Serum IFE negative"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "positive",
+                "display": "Serum IFE positive"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "urine_ife",
+          "text": "Urine immunofixation (IFE)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "negative",
+                "display": "Urine IFE negative"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "positive",
+                "display": "Urine IFE positive"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "flc_ratio",
+          "text": "Serum κ/λ free light chain ratio (normal 0.26–1.65)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "dflc_baseline_mg_L",
+          "text": "dFLC (involved − uninvolved) at baseline (mg/L; 0 if not applicable)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "dflc_current_mg_L",
+          "text": "dFLC, current (mg/L; 0 if not applicable)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "dflc_nadir_mg_L",
+          "text": "dFLC nadir (mg/L; 0 if not applicable)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "bmpc_baseline_pct",
+          "text": "Bone marrow plasma cells at baseline (%)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "bmpc_current_pct",
+          "text": "Bone marrow plasma cells, current (%)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "bmpc_nadir_pct",
+          "text": "Bone marrow plasma cells nadir (%)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "bm_clonality",
+          "text": "Bone marrow clonality (immunohistochemistry / flow)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "polyclonal",
+                "display": "BM polyclonal (no clonal plasma cells)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "clonal",
+                "display": "BM clonal plasma cells present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "plasmacytoma_baseline_present",
+          "text": "Soft-tissue plasmacytoma at baseline",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "no",
+                "display": "No baseline plasmacytoma"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "yes",
+                "display": "Baseline plasmacytoma present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "plasmacytoma_spd_baseline_cm2",
+          "text": "Plasmacytoma SPD at baseline (cm²; 0 if none)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "plasmacytoma_spd_current_cm2",
+          "text": "Plasmacytoma SPD, current (cm²; 0 if resolved)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "plasmacytoma_new_or_enlarged",
+          "text": "New / definitely enlarged plasmacytoma or bone lesion",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "no",
+                "display": "No new or enlarged plasmacytoma"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "yes",
+                "display": "New or enlarged plasmacytoma"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "mrd_ngf_negative",
+          "text": "NGF (next-gen flow) MRD result",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "no",
+                "display": "NGF MRD positive or not done"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "yes",
+                "display": "NGF MRD negative (≥10⁻⁵)"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "mrd_ngs_negative",
+          "text": "NGS (next-gen sequencing) MRD result",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "no",
+                "display": "NGS MRD positive or not done"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "yes",
+                "display": "NGS MRD negative (≥10⁻⁵)"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "mrd_imaging_negative",
+          "text": "Imaging (PET-CT) MRD result",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "no",
+                "display": "Imaging MRD positive or not done"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "yes",
+                "display": "Imaging MRD negative (PET resolution)"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "mrd_sustained_ge_1y",
+          "text": "Sustained MRD-negative ≥ 1 year apart, no intervening positive",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "no",
+                "display": "Not sustained ≥ 1 year"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "yes",
+                "display": "Sustained MRD ≥ 1 year"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "corrected_calcium_mg_dL",
+          "text": "Corrected serum calcium (mg/dL)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "confirmed_two_consecutive",
+          "text": "Confirmed on 2 consecutive assessments before next therapy",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "no",
+                "display": "Not yet confirmed"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/imwg-response",
+                "code": "yes",
+                "display": "Confirmed on 2 consecutive assessments"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "category",
+          "text": "IMWG response category",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sM0",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='serum_m_baseline_g_dL').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sM1",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='serum_m_current_g_dL').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sMnadir",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='serum_m_nadir_g_dL').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "uM0",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='urine_m_baseline_mg_24h').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "uM1",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='urine_m_current_mg_24h').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "uMnadir",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='urine_m_nadir_mg_24h').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sIFEpos",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='serum_ife').answer.value.code = 'positive'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "uIFEpos",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='urine_ife').answer.value.code = 'positive'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "flcRatio",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='flc_ratio').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "dFLC0",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='dflc_baseline_mg_L').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "dFLC1",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='dflc_current_mg_L').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "dFLCnadir",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='dflc_nadir_mg_L').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "bmpc0",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='bmpc_baseline_pct').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "bmpc1",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='bmpc_current_pct').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "bmpcNadir",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='bmpc_nadir_pct').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "bmClonal",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='bm_clonality').answer.value.code = 'clonal'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "plasm0",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='plasmacytoma_baseline_present').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "plasmSPD0",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='plasmacytoma_spd_baseline_cm2').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "plasmSPD1",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='plasmacytoma_spd_current_cm2').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "plasmNewOrEnlarged",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='plasmacytoma_new_or_enlarged').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ngfNeg",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='mrd_ngf_negative').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ngsNeg",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='mrd_ngs_negative').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "imgNeg",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='mrd_imaging_negative').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sustainedMRD",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='mrd_sustained_ge_1y').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "caCorr",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='corrected_calcium_mg_dL').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "confirmed",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='confirmed_two_consecutive').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "plasmResolved",
+                "language": "text/fhirpath",
+                "expression": "%plasm0.not() or %plasmSPD1 = 0"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "plasmReducedGE50",
+                "language": "text/fhirpath",
+                "expression": "%plasm0.not() or (%plasmSPD0 > 0 and (%plasmSPD0 - %plasmSPD1) / %plasmSPD0 >= 0.5)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "isCR",
+                "language": "text/fhirpath",
+                "expression": "%sIFEpos.not() and %uIFEpos.not() and %plasmResolved and %bmpc1 < 5"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "isSCR",
+                "language": "text/fhirpath",
+                "expression": "%isCR and %flcRatio >= 0.26 and %flcRatio <= 1.65 and %bmClonal.not()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "isFlowMRDneg",
+                "language": "text/fhirpath",
+                "expression": "%isCR and %ngfNeg"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "isSeqMRDneg",
+                "language": "text/fhirpath",
+                "expression": "%isCR and %ngsNeg"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "isImgMRDneg",
+                "language": "text/fhirpath",
+                "expression": "%isCR and (%ngfNeg or %ngsNeg) and %imgNeg"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "isSustainedMRDneg",
+                "language": "text/fhirpath",
+                "expression": "%isCR and (%ngfNeg or %ngsNeg) and %sustainedMRD"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "vgprByIFE",
+                "language": "text/fhirpath",
+                "expression": "(%sIFEpos or %uIFEpos) and (%sM1 = 0) and (%uM1 < 100)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "vgprBy90Pct",
+                "language": "text/fhirpath",
+                "expression": "(%sM0 > 0) and ((%sM0 - %sM1) / %sM0 >= 0.9) and (%uM1 < 100)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "vgprByFLC",
+                "language": "text/fhirpath",
+                "expression": "(%dFLC0 > 0) and ((%dFLC0 - %dFLC1) / %dFLC0 >= 0.9)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "isVGPR",
+                "language": "text/fhirpath",
+                "expression": "%vgprByIFE or %vgprBy90Pct or %vgprByFLC"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "prBySerumUrine",
+                "language": "text/fhirpath",
+                "expression": "%sM0 > 0 and (%sM0 - %sM1) / %sM0 >= 0.5 and ((%uM0 > 0 and (%uM0 - %uM1) / %uM0 >= 0.9) or %uM1 < 200)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "prByFLC",
+                "language": "text/fhirpath",
+                "expression": "%dFLC0 > 0 and (%dFLC0 - %dFLC1) / %dFLC0 >= 0.5"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "prByMarrow",
+                "language": "text/fhirpath",
+                "expression": "%bmpc0 >= 30 and (%bmpc0 - %bmpc1) / %bmpc0 >= 0.5"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "isPR",
+                "language": "text/fhirpath",
+                "expression": "(%prBySerumUrine or %prByFLC or %prByMarrow) and %plasmReducedGE50"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "mrSerum",
+                "language": "text/fhirpath",
+                "expression": "%sM0 > 0 and (%sM0 - %sM1) / %sM0 >= 0.25 and (%sM0 - %sM1) / %sM0 <= 0.49"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "mrUrine",
+                "language": "text/fhirpath",
+                "expression": "%uM0 > 0 and (%uM0 - %uM1) / %uM0 >= 0.5 and (%uM0 - %uM1) / %uM0 <= 0.89"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "isMR",
+                "language": "text/fhirpath",
+                "expression": "%mrSerum and %mrUrine and %plasmReducedGE50"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "pdBySerum",
+                "language": "text/fhirpath",
+                "expression": "%sMnadir > 0 and (%sM1 - %sMnadir) / %sMnadir >= 0.25 and ((%sMnadir < 5 and (%sM1 - %sMnadir) >= 0.5) or (%sMnadir >= 5 and (%sM1 - %sMnadir) >= 1.0))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "pdByUrine",
+                "language": "text/fhirpath",
+                "expression": "%uMnadir >= 0 and (%uM1 - %uMnadir) >= 200 and (%uM1 - %uMnadir) / (%uMnadir + 0.0001) >= 0.25"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "pdByFLC",
+                "language": "text/fhirpath",
+                "expression": "%dFLCnadir > 0 and (%dFLC1 - %dFLCnadir) / %dFLCnadir >= 0.25 and (%dFLC1 - %dFLCnadir) > 100"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "pdByMarrow",
+                "language": "text/fhirpath",
+                "expression": "%bmpcNadir > 0 and (%bmpc1 - %bmpcNadir) / %bmpcNadir >= 0.25 and (%bmpc1 - %bmpcNadir) >= 10"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "pdByCalcium",
+                "language": "text/fhirpath",
+                "expression": "%caCorr > 11.5"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "isPD",
+                "language": "text/fhirpath",
+                "expression": "%pdBySerum or %pdByUrine or %pdByFLC or %pdByMarrow or %plasmNewOrEnlarged or %pdByCalcium"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%confirmed.not(), 'Pending confirmation', iif(%isSustainedMRDneg, 'Sustained MRD-negative', iif(%isImgMRDneg, 'Imaging plus MRD-negative', iif(%isFlowMRDneg, 'Flow MRD-negative', iif(%isSeqMRDneg, 'Sequencing MRD-negative', iif(%isSCR, 'sCR', iif(%isCR, 'CR', iif(%isVGPR, 'VGPR', iif(%isPR, 'PR', iif(%isMR, 'MR', iif(%isPD, 'PD', 'SD'))))))))))) "
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calculator Harness</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Fira+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        max-width: 900px;
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+      }
+      h1 { color: #1e40af; font-size: 1.25rem; }
+      #status { font-family: "Fira Mono", monospace; font-size: 0.85rem; color: #6b7280; }
+      #status[data-state="ready"] { color: #059669; }
+      #status[data-state="error"] { color: #dc2626; }
+      pre#response { background: #f3f4f6; padding: 0.75rem; font-size: 0.75rem; max-height: 240px; overflow: auto; }
+    </style>
+    <script>
+      // Window globals for Playwright assertions:
+      //   window.__tiroState   : "loading" | "ready" | "error"
+      //   window.__tiroResponse: latest QuestionnaireResponse (object)
+      //   window.__tiroError   : last error detail
+      window.__tiroState = "loading";
+      window.__tiroResponse = null;
+      window.__tiroError = null;
+
+      // Synchronously fetch the questionnaire JSON and inline it into the script
+      // slot before the SDK script tag at the bottom of the body executes.
+      // We use a blocking XHR — necessary because the SDK reads the slot's
+      // textContent during its initial render and won't pick up later updates
+      // without a remount.
+      (function injectQuestionnaire() {
+        const params = new URLSearchParams(location.search);
+        const calc = params.get("q");
+        if (!calc) {
+          document.addEventListener("DOMContentLoaded", () => {
+            const status = document.getElementById("status");
+            status.dataset.state = "error";
+            status.textContent = "missing ?q=<calc-slug>";
+            window.__tiroState = "error";
+            window.__tiroError = "missing-calc-param";
+          });
+          return;
+        }
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "/" + calc + "/questionnaire.json", false); // synchronous
+        try {
+          xhr.send();
+          if (xhr.status !== 200) throw new Error("fetch " + xhr.status);
+          window.__inlineQuestionnaire = xhr.responseText;
+          window.__inlineCalc = calc;
+        } catch (err) {
+          window.__tiroState = "error";
+          window.__tiroError = String(err);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <h1 id="title">Calculator Harness</h1>
+    <p id="status" data-state="loading">loading…</p>
+
+    <tiro-form-filler id="form">
+      <script type="application/fhir+json" slot="questionnaire" id="q-slot">
+        {}
+      </script>
+    </tiro-form-filler>
+
+    <details>
+      <summary>QuestionnaireResponse (live)</summary>
+      <pre id="response">{}</pre>
+    </details>
+
+    <script>
+      // Populate the inline slot synchronously, set the title, wire events.
+      (function setup() {
+        const slot = document.getElementById("q-slot");
+        const title = document.getElementById("title");
+        const status = document.getElementById("status");
+        const filler = document.getElementById("form");
+
+        if (window.__inlineQuestionnaire) {
+          slot.textContent = window.__inlineQuestionnaire;
+          title.textContent = "Harness · " + window.__inlineCalc;
+        } else if (window.__tiroError) {
+          status.dataset.state = "error";
+          status.textContent = String(window.__tiroError);
+          return;
+        }
+
+        filler.addEventListener("tiro-ready", () => {
+          window.__tiroState = "ready";
+          status.dataset.state = "ready";
+          status.textContent = "ready";
+        });
+        filler.addEventListener("tiro-update", (ev) => {
+          window.__tiroResponse = ev.detail.response;
+          // Lazy-update the JSON pane only when <details> is open, to avoid
+          // big text reflows that look like form re-renders.
+          const details = document.querySelector("details");
+          if (details && details.open) {
+            document.getElementById("response").textContent = JSON.stringify(
+              ev.detail.response,
+              null,
+              2,
+            );
+          }
+        });
+        filler.addEventListener("tiro-error", (ev) => {
+          window.__tiroError = ev.detail;
+          window.__tiroState = "error";
+          status.dataset.state = "error";
+          status.textContent =
+            "tiro-error: " + (ev.detail?.error?.message ?? "unknown");
+        });
+      })();
+    </script>
+
+    <!-- SDK script: at the end of body, no async, no defer. Mirrors the
+         examples/04-inline-questionnaire.html pattern. The form-filler is
+         already in the DOM with its inline script slot populated when this
+         executes. -->
+    <script src="https://cdn.tiro.health/sdk/next/tiro-web-sdk.iife.js"></script>
+  </body>
+</html>

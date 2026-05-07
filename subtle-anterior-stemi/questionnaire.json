@@ -1,0 +1,406 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "SubtleAnteriorStemi",
+  "title": "Subtle Anterior STEMI Calculator (4-Variable)",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Driver/Smith 4-variable formula to differentiate benign early repolarization (BER) from subtle anterior STEMI caused by LAD coronary artery occlusion (Driver BE et al., Am J Emerg Med 2017;35(4):561-565). Score >= 18.2 indicates likely LAD occlusion (Smith-positive).",
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "ste_v2_v4_ge_1mm",
+          "type": "coding",
+          "text": "ECG entry criterion: >= 1 mm ST elevation in >= 1 of leads V2-V4",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "no",
+                "display": "Entry criterion not met"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "yes",
+                "display": "Entry criterion met"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "excl_ste_gt_5mm",
+          "type": "coding",
+          "text": "Exclusion: ST elevation > 5 mm in any precordial lead",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "no",
+                "display": "No STE > 5 mm"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "yes",
+                "display": "STE > 5 mm present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "excl_non_concave_st",
+          "type": "coding",
+          "text": "Exclusion: non-concave (convex / straight / tombstone) ST morphology",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "no",
+                "display": "ST morphology concave"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "yes",
+                "display": "Non-concave ST morphology"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "excl_inferior_recip_depression",
+          "type": "coding",
+          "text": "Exclusion: inferior reciprocal ST depression",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "no",
+                "display": "No inferior reciprocal depression"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "yes",
+                "display": "Inferior reciprocal depression present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "excl_anterior_st_depression",
+          "type": "coding",
+          "text": "Exclusion: anterior ST depression",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "no",
+                "display": "No anterior ST depression"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "yes",
+                "display": "Anterior ST depression present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "excl_terminal_qrs_distortion_v2v3",
+          "type": "coding",
+          "text": "Exclusion: terminal QRS distortion in V2 or V3 (absence of both S-wave and J-wave)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "no",
+                "display": "No terminal QRS distortion"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "yes",
+                "display": "Terminal QRS distortion present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "excl_q_waves_v2_v4",
+          "type": "coding",
+          "text": "Exclusion: pathologic Q waves in V2-V4",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "no",
+                "display": "No pathologic Q waves"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "yes",
+                "display": "Pathologic Q waves present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "excl_t_inversion_v2_v6",
+          "type": "coding",
+          "text": "Exclusion: T-wave inversion in V2-V6",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "no",
+                "display": "No T-wave inversion"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/subtle-anterior-stemi",
+                "code": "yes",
+                "display": "T-wave inversion present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "qtc",
+          "type": "decimal",
+          "text": "Bazett-corrected QT interval (QTc, ms)",
+          "required": true
+        },
+        {
+          "linkId": "qrs_v2",
+          "type": "decimal",
+          "text": "QRS amplitude in V2 (peak-to-trough, mm)",
+          "required": true
+        },
+        {
+          "linkId": "r_v4",
+          "type": "decimal",
+          "text": "R-wave amplitude in V4 (mm)",
+          "required": true
+        },
+        {
+          "linkId": "ste60_v3",
+          "type": "decimal",
+          "text": "ST elevation 60 ms after J-point in V3 (mm)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "score",
+          "type": "decimal",
+          "text": "Driver/Smith 4-variable score",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "0.052 * %resource.item.where(linkId='inputs').item.where(linkId='qtc').answer.value - 0.151 * %resource.item.where(linkId='inputs').item.where(linkId='qrs_v2').answer.value - 0.268 * %resource.item.where(linkId='inputs').item.where(linkId='r_v4').answer.value + 1.062 * %resource.item.where(linkId='inputs').item.where(linkId='ste60_v3').answer.value"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "smith_positive",
+          "type": "string",
+          "text": "Smith-positive (score >= 18.2)?",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif((0.052 * %resource.item.where(linkId='inputs').item.where(linkId='qtc').answer.value - 0.151 * %resource.item.where(linkId='inputs').item.where(linkId='qrs_v2').answer.value - 0.268 * %resource.item.where(linkId='inputs').item.where(linkId='r_v4').answer.value + 1.062 * %resource.item.where(linkId='inputs').item.where(linkId='ste60_v3').answer.value) >= 18.2, 'Yes', 'No')"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "interpretation",
+          "type": "string",
+          "text": "Interpretation",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='ste_v2_v4_ge_1mm').answer.value.code = 'no' or %resource.item.where(linkId='inputs').item.where(linkId='excl_ste_gt_5mm').answer.value.code = 'yes' or %resource.item.where(linkId='inputs').item.where(linkId='excl_non_concave_st').answer.value.code = 'yes' or %resource.item.where(linkId='inputs').item.where(linkId='excl_inferior_recip_depression').answer.value.code = 'yes' or %resource.item.where(linkId='inputs').item.where(linkId='excl_anterior_st_depression').answer.value.code = 'yes' or %resource.item.where(linkId='inputs').item.where(linkId='excl_terminal_qrs_distortion_v2v3').answer.value.code = 'yes' or %resource.item.where(linkId='inputs').item.where(linkId='excl_q_waves_v2_v4').answer.value.code = 'yes' or %resource.item.where(linkId='inputs').item.where(linkId='excl_t_inversion_v2_v6').answer.value.code = 'yes', 'Pre-conditions not met - do not apply formula. If any exclusion is present, treat as STEMI directly.', iif((0.052 * %resource.item.where(linkId='inputs').item.where(linkId='qtc').answer.value - 0.151 * %resource.item.where(linkId='inputs').item.where(linkId='qrs_v2').answer.value - 0.268 * %resource.item.where(linkId='inputs').item.where(linkId='r_v4').answer.value + 1.062 * %resource.item.where(linkId='inputs').item.where(linkId='ste60_v3').answer.value) >= 18.2, 'Smith-positive - likely subtle anterior STEMI / LAD occlusion. Activate cath lab in appropriate clinical context.', 'Smith-negative - favors benign early repolarization. Does not rule out LAD occlusion; consider serial ECGs and troponin.'))"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

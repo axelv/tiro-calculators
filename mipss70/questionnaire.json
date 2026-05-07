@@ -1,0 +1,802 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "Mipss70",
+  "title": "MIPSS70 / MIPSS70+ v2.0 — Mutation-Enhanced International Prognostic Score System for Primary Myelofibrosis",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Risk stratification for transplant-eligible (≤70 y) primary myelofibrosis. Two complementary models: MIPSS70 (clinical + mutation) and MIPSS70+ v2.0 (clinical + mutation + karyotype). Sources: Guglielmelli P et al., J Clin Oncol 2018;36(4):310–318; Tefferi A et al., J Clin Oncol 2018;36(17):1769–1770.",
+  "item": [
+    {
+      "linkId": "inputs",
+      "text": "Inputs",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "version",
+          "text": "Scoring system",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "MIPSS70",
+                "display": "MIPSS70 (original)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "MIPSS70+v2.0",
+                "display": "MIPSS70+ v2.0"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "hb_lt_10",
+          "text": "Hemoglobin < 10 g/dL (MIPSS70 only)",
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "no",
+                "display": "Hb ≥ 10 g/dL"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "yes",
+                "display": "Hb < 10 g/dL"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "wbc_gt_25",
+          "text": "Leukocytes > 25 × 10⁹/L (MIPSS70 only)",
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "no",
+                "display": "WBC ≤ 25 × 10⁹/L"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "yes",
+                "display": "WBC > 25 × 10⁹/L"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "plt_lt_100",
+          "text": "Platelets < 100 × 10⁹/L (MIPSS70 only)",
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "no",
+                "display": "Platelets ≥ 100 × 10⁹/L"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "yes",
+                "display": "Platelets < 100 × 10⁹/L"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "bm_fibrosis_ge_2",
+          "text": "Bone-marrow fibrosis grade ≥ 2 (MIPSS70 only)",
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "no",
+                "display": "BM fibrosis grade < 2"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "yes",
+                "display": "BM fibrosis grade ≥ 2"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "blasts_ge_2",
+          "text": "Circulating blasts ≥ 2 %",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "no",
+                "display": "PB blasts < 2 %"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "yes",
+                "display": "PB blasts ≥ 2 %"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "constitutional_symptoms",
+          "text": "Constitutional symptoms (weight loss > 10 % / 6 mo, night sweats, unexplained fever)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "no",
+                "display": "No constitutional symptoms"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "yes",
+                "display": "Constitutional symptoms present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "absence_calr_type1",
+          "text": "Driver mutation status",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "no",
+                "display": "CALR type 1 / type 1-like driver"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "yes",
+                "display": "Driver is not CALR type 1 / type 1-like"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "hmr_present",
+          "text": "HMR mutation present (≥ 1 of ASXL1, EZH2, SRSF2, IDH1, IDH2) — MIPSS70 only",
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "no",
+                "display": "No HMR mutation"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "yes",
+                "display": "HMR mutation present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "hmr_two_or_more",
+          "text": "≥ 2 HMR mutations (MIPSS70 only — additive on top of HMR-present point)",
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "no",
+                "display": "< 2 HMR mutations"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "yes",
+                "display": "≥ 2 HMR mutations"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "severe_anemia",
+          "text": "Severe anemia — Hb < 8 g/dL (women) or < 9 g/dL (men) — MIPSS70+ v2.0 only",
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "no",
+                "display": "Not severe anemia"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "yes",
+                "display": "Severe anemia (Hb < 8 ♀ / < 9 ♂)"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "moderate_anemia",
+          "text": "Moderate anemia — Hb 8.0–9.9 g/dL (women) or 9.0–10.9 g/dL (men) — MIPSS70+ v2.0 only",
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "no",
+                "display": "Not moderate anemia"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "yes",
+                "display": "Moderate anemia (Hb 8–9.9 ♀ / 9–10.9 ♂)"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "hmr_status",
+          "text": "HMR mutation count (MIPSS70+ v2.0 only — expanded list incl. U2AF1 Q157)",
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "none",
+                "display": "No HMR mutation (v2.0)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "single",
+                "display": "Single HMR mutation (v2.0)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "two_or_more",
+                "display": "≥ 2 HMR mutations (v2.0)"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "karyotype",
+          "text": "Karyotype risk (MIPSS70+ v2.0 only)",
+          "type": "coding",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "favorable",
+                "display": "Favorable karyotype"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "unfavorable",
+                "display": "Unfavorable karyotype"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/mipss70",
+                "code": "vhr",
+                "display": "Very-high-risk (VHR) karyotype"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "text": "Outputs",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "total_score",
+          "text": "Total score",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "version",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='version').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scoreMipss70",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='hb_lt_10').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='wbc_gt_25').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='plt_lt_100').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='blasts_ge_2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='bm_fibrosis_ge_2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='constitutional_symptoms').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='absence_calr_type1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_present').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_two_or_more').answer.value.code = 'yes', 2, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scoreMipss70V2",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='karyotype').answer.value.code = 'vhr', 4, iif(%resource.item.where(linkId='inputs').item.where(linkId='karyotype').answer.value.code = 'unfavorable', 3, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_status').answer.value.code = 'two_or_more', 3, iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_status').answer.value.code = 'single', 2, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='absence_calr_type1').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='constitutional_symptoms').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='severe_anemia').answer.value.code = 'yes', 2, iif(%resource.item.where(linkId='inputs').item.where(linkId='moderate_anemia').answer.value.code = 'yes', 1, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='blasts_ge_2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%version = 'MIPSS70', %scoreMipss70, %scoreMipss70V2)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_category",
+          "text": "Risk category",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "version",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='version').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scoreMipss70",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='hb_lt_10').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='wbc_gt_25').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='plt_lt_100').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='blasts_ge_2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='bm_fibrosis_ge_2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='constitutional_symptoms').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='absence_calr_type1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_present').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_two_or_more').answer.value.code = 'yes', 2, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scoreMipss70V2",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='karyotype').answer.value.code = 'vhr', 4, iif(%resource.item.where(linkId='inputs').item.where(linkId='karyotype').answer.value.code = 'unfavorable', 3, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_status').answer.value.code = 'two_or_more', 3, iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_status').answer.value.code = 'single', 2, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='absence_calr_type1').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='constitutional_symptoms').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='severe_anemia').answer.value.code = 'yes', 2, iif(%resource.item.where(linkId='inputs').item.where(linkId='moderate_anemia').answer.value.code = 'yes', 1, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='blasts_ge_2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%version = 'MIPSS70', iif(%scoreMipss70 <= 1, 'low', iif(%scoreMipss70 <= 4, 'intermediate', 'high')), iif(%scoreMipss70V2 = 0, 'very_low', iif(%scoreMipss70V2 <= 2, 'low', iif(%scoreMipss70V2 <= 4, 'intermediate', iif(%scoreMipss70V2 <= 8, 'high', 'very_high')))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "median_os_label",
+          "text": "Median overall survival",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "version",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='version').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scoreMipss70",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='hb_lt_10').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='wbc_gt_25').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='plt_lt_100').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='blasts_ge_2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='bm_fibrosis_ge_2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='constitutional_symptoms').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='absence_calr_type1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_present').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_two_or_more').answer.value.code = 'yes', 2, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scoreMipss70V2",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='karyotype').answer.value.code = 'vhr', 4, iif(%resource.item.where(linkId='inputs').item.where(linkId='karyotype').answer.value.code = 'unfavorable', 3, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_status').answer.value.code = 'two_or_more', 3, iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_status').answer.value.code = 'single', 2, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='absence_calr_type1').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='constitutional_symptoms').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='severe_anemia').answer.value.code = 'yes', 2, iif(%resource.item.where(linkId='inputs').item.where(linkId='moderate_anemia').answer.value.code = 'yes', 1, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='blasts_ge_2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%version = 'MIPSS70', iif(%scoreMipss70 <= 1, '27.7 years', iif(%scoreMipss70 <= 4, '7.1 years', '2.3 years')), iif(%scoreMipss70V2 = 0, 'Not reached', iif(%scoreMipss70V2 <= 2, '16.4 years', iif(%scoreMipss70V2 <= 4, '7.7 years', iif(%scoreMipss70V2 <= 8, '4.1 years', '1.8 years')))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "survival_at_5y",
+          "text": "5-year overall survival (MIPSS70 only, proportion)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "version",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='version').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scoreMipss70",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='hb_lt_10').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='wbc_gt_25').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='plt_lt_100').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='blasts_ge_2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='bm_fibrosis_ge_2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='constitutional_symptoms').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='absence_calr_type1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_present').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_two_or_more').answer.value.code = 'yes', 2, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%version = 'MIPSS70', iif(%scoreMipss70 <= 1, 0.95, iif(%scoreMipss70 <= 4, 0.70, 0.29)), {})"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "survival_at_10y",
+          "text": "10-year overall survival (MIPSS70+ v2.0 only, proportion)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "version",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='version').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scoreMipss70V2",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='karyotype').answer.value.code = 'vhr', 4, iif(%resource.item.where(linkId='inputs').item.where(linkId='karyotype').answer.value.code = 'unfavorable', 3, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_status').answer.value.code = 'two_or_more', 3, iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_status').answer.value.code = 'single', 2, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='absence_calr_type1').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='constitutional_symptoms').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='severe_anemia').answer.value.code = 'yes', 2, iif(%resource.item.where(linkId='inputs').item.where(linkId='moderate_anemia').answer.value.code = 'yes', 1, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='blasts_ge_2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%version = 'MIPSS70+v2.0', iif(%scoreMipss70V2 = 0, 0.92, iif(%scoreMipss70V2 <= 2, 0.56, iif(%scoreMipss70V2 <= 4, 0.37, iif(%scoreMipss70V2 <= 8, 0.13, 0.05)))), {})"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "transplant_recommendation",
+          "text": "Transplant recommendation",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "version",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='version').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scoreMipss70",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='hb_lt_10').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='wbc_gt_25').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='plt_lt_100').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='blasts_ge_2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='bm_fibrosis_ge_2').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='constitutional_symptoms').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='absence_calr_type1').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_present').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_two_or_more').answer.value.code = 'yes', 2, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "scoreMipss70V2",
+                "language": "text/fhirpath",
+                "expression": "iif(%resource.item.where(linkId='inputs').item.where(linkId='karyotype').answer.value.code = 'vhr', 4, iif(%resource.item.where(linkId='inputs').item.where(linkId='karyotype').answer.value.code = 'unfavorable', 3, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_status').answer.value.code = 'two_or_more', 3, iif(%resource.item.where(linkId='inputs').item.where(linkId='hmr_status').answer.value.code = 'single', 2, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='absence_calr_type1').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='constitutional_symptoms').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='severe_anemia').answer.value.code = 'yes', 2, iif(%resource.item.where(linkId='inputs').item.where(linkId='moderate_anemia').answer.value.code = 'yes', 1, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='blasts_ge_2').answer.value.code = 'yes', 1, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%version = 'MIPSS70', iif(%scoreMipss70 <= 1, 'defer', iif(%scoreMipss70 <= 4, 'consider', 'recommend')), iif(%scoreMipss70V2 <= 2, 'defer', iif(%scoreMipss70V2 <= 4, 'individualized', iif(%scoreMipss70V2 <= 8, 'recommend', 'strongly_recommend'))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

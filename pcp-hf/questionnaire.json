@@ -1,0 +1,542 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "PcpHf",
+  "title": "PCP-HF — Pooled Cohort Equations to Prevent Heart Failure",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Race- and sex-specific Cox proportional-hazards model that estimates 10-year risk of incident heart failure in adults 30-79 years without prior cardiovascular disease (Khan SS et al., JACC 2019;73(19):2388-2397; Circulation 2019;139:2191-2201).",
+  "extension": [],
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "sex",
+          "type": "coding",
+          "text": "Sex",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/pcp-hf",
+                "code": "male",
+                "display": "Male"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/pcp-hf",
+                "code": "female",
+                "display": "Female"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "race",
+          "type": "coding",
+          "text": "Race",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/pcp-hf",
+                "code": "white",
+                "display": "White"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/pcp-hf",
+                "code": "black",
+                "display": "Black"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "age",
+          "type": "decimal",
+          "text": "Age (years, 30-79)",
+          "required": true
+        },
+        {
+          "linkId": "sbp",
+          "type": "decimal",
+          "text": "Systolic blood pressure (mmHg)",
+          "required": true
+        },
+        {
+          "linkId": "on_antihypertensive",
+          "type": "coding",
+          "text": "On antihypertensive treatment",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/pcp-hf",
+                "code": "no",
+                "display": "Not on antihypertensive"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/pcp-hf",
+                "code": "yes",
+                "display": "On antihypertensive"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "current_smoker",
+          "type": "coding",
+          "text": "Current smoker",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/pcp-hf",
+                "code": "no",
+                "display": "Non-smoker"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/pcp-hf",
+                "code": "yes",
+                "display": "Current smoker"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "glucose",
+          "type": "decimal",
+          "text": "Fasting glucose (mg/dL)",
+          "required": true
+        },
+        {
+          "linkId": "on_dm_meds",
+          "type": "coding",
+          "text": "On diabetes medication",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/pcp-hf",
+                "code": "no",
+                "display": "Not on diabetes medication"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/pcp-hf",
+                "code": "yes",
+                "display": "On diabetes medication"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "total_chol",
+          "type": "decimal",
+          "text": "Total cholesterol (mg/dL)",
+          "required": true
+        },
+        {
+          "linkId": "hdl",
+          "type": "decimal",
+          "text": "HDL cholesterol (mg/dL)",
+          "required": true
+        },
+        {
+          "linkId": "bmi",
+          "type": "decimal",
+          "text": "BMI (kg/m²)",
+          "required": true
+        },
+        {
+          "linkId": "qrs",
+          "type": "decimal",
+          "text": "QRS duration (ms)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "risk_pct",
+          "type": "decimal",
+          "text": "10-year risk of incident heart failure (%)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sexCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "raceCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='race').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "treatedBp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='on_antihypertensive').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "smoker",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='current_smoker').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "treatedDm",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='on_dm_meds').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lnAge",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value.ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lnSbp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sbp').answer.value.ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lnGlu",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='glucose').answer.value.ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lnTc",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='total_chol').answer.value.ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lnHdl",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='hdl').answer.value.ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lnBmi",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='bmi').answer.value.ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lnQrs",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='qrs').answer.value.ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "indSum",
+                "language": "text/fhirpath",
+                "expression": "iif(%raceCode = 'white' and %sexCode = 'male', 41.94 * %lnAge + (-0.88) * %lnAge.power(2) + iif(%treatedBp, 1.03 * %lnSbp, 0.91 * %lnSbp) + iif(%smoker, 0.74, 0) + iif(%treatedDm, 0.90 * %lnGlu, 0.78 * %lnGlu) + 0.49 * %lnTc + (-0.44) * %lnHdl + 37.20 * %lnBmi + (-8.83) * %lnAge * %lnBmi + 0.63 * %lnQrs, iif(%raceCode = 'white' and %sexCode = 'female', 20.55 * %lnAge + iif(%treatedBp, 12.95 * %lnSbp + (-2.96) * %lnAge * %lnSbp, 11.86 * %lnSbp + (-2.73) * %lnAge * %lnSbp) + iif(%smoker, 11.02 + (-2.50) * %lnAge, 0) + iif(%treatedDm, 1.04 * %lnGlu, 0.91 * %lnGlu) + (-0.07) * %lnHdl + 1.33 * %lnBmi + 1.06 * %lnQrs, iif(%raceCode = 'black' and %sexCode = 'male', 2.88 * %lnAge + iif(%treatedBp, 2.31 * %lnSbp, 2.17 * %lnSbp) + iif(%smoker, 1.66 + (-0.25) * %lnAge, 0) + iif(%treatedDm, 0.64 * %lnGlu, 0.58 * %lnGlu) + (-0.81) * %lnHdl + 1.16 * %lnBmi + 0.73 * %lnQrs, 51.75 * %lnAge + iif(%treatedBp, 29.00 * %lnSbp + (-6.59) * %lnAge * %lnSbp, 28.18 * %lnSbp + (-6.42) * %lnAge * %lnSbp) + iif(%smoker, 0.76, 0) + iif(%treatedDm, 0.97 * %lnGlu, 0.80 * %lnGlu) + 0.32 * %lnTc + 21.24 * %lnBmi + (-5.00) * %lnAge * %lnBmi + 1.27 * %lnQrs)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "meanCv",
+                "language": "text/fhirpath",
+                "expression": "iif(%raceCode = 'white' and %sexCode = 'male', 171.5, iif(%raceCode = 'white' and %sexCode = 'female', 99.73, iif(%raceCode = 'black' and %sexCode = 'male', 28.73, 233.9)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "s0",
+                "language": "text/fhirpath",
+                "expression": "iif(%raceCode = 'white' and %sexCode = 'male', 0.98752, iif(%raceCode = 'white' and %sexCode = 'female', 0.99348, iif(%raceCode = 'black' and %sexCode = 'male', 0.98295, 0.99260)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "(1 - %s0.power((%indSum - %meanCv).exp())) * 100"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_band",
+          "type": "string",
+          "text": "Risk band",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sexCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "raceCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='race').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "treatedBp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='on_antihypertensive').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "smoker",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='current_smoker').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "treatedDm",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='on_dm_meds').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lnAge",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value.ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lnSbp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sbp').answer.value.ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lnGlu",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='glucose').answer.value.ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lnTc",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='total_chol').answer.value.ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lnHdl",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='hdl').answer.value.ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lnBmi",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='bmi').answer.value.ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lnQrs",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='qrs').answer.value.ln()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "indSum",
+                "language": "text/fhirpath",
+                "expression": "iif(%raceCode = 'white' and %sexCode = 'male', 41.94 * %lnAge + (-0.88) * %lnAge.power(2) + iif(%treatedBp, 1.03 * %lnSbp, 0.91 * %lnSbp) + iif(%smoker, 0.74, 0) + iif(%treatedDm, 0.90 * %lnGlu, 0.78 * %lnGlu) + 0.49 * %lnTc + (-0.44) * %lnHdl + 37.20 * %lnBmi + (-8.83) * %lnAge * %lnBmi + 0.63 * %lnQrs, iif(%raceCode = 'white' and %sexCode = 'female', 20.55 * %lnAge + iif(%treatedBp, 12.95 * %lnSbp + (-2.96) * %lnAge * %lnSbp, 11.86 * %lnSbp + (-2.73) * %lnAge * %lnSbp) + iif(%smoker, 11.02 + (-2.50) * %lnAge, 0) + iif(%treatedDm, 1.04 * %lnGlu, 0.91 * %lnGlu) + (-0.07) * %lnHdl + 1.33 * %lnBmi + 1.06 * %lnQrs, iif(%raceCode = 'black' and %sexCode = 'male', 2.88 * %lnAge + iif(%treatedBp, 2.31 * %lnSbp, 2.17 * %lnSbp) + iif(%smoker, 1.66 + (-0.25) * %lnAge, 0) + iif(%treatedDm, 0.64 * %lnGlu, 0.58 * %lnGlu) + (-0.81) * %lnHdl + 1.16 * %lnBmi + 0.73 * %lnQrs, 51.75 * %lnAge + iif(%treatedBp, 29.00 * %lnSbp + (-6.59) * %lnAge * %lnSbp, 28.18 * %lnSbp + (-6.42) * %lnAge * %lnSbp) + iif(%smoker, 0.76, 0) + iif(%treatedDm, 0.97 * %lnGlu, 0.80 * %lnGlu) + 0.32 * %lnTc + 21.24 * %lnBmi + (-5.00) * %lnAge * %lnBmi + 1.27 * %lnQrs)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "meanCv",
+                "language": "text/fhirpath",
+                "expression": "iif(%raceCode = 'white' and %sexCode = 'male', 171.5, iif(%raceCode = 'white' and %sexCode = 'female', 99.73, iif(%raceCode = 'black' and %sexCode = 'male', 28.73, 233.9)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "s0",
+                "language": "text/fhirpath",
+                "expression": "iif(%raceCode = 'white' and %sexCode = 'male', 0.98752, iif(%raceCode = 'white' and %sexCode = 'female', 0.99348, iif(%raceCode = 'black' and %sexCode = 'male', 0.98295, 0.99260)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "riskPct",
+                "language": "text/fhirpath",
+                "expression": "(1 - %s0.power((%indSum - %meanCv).exp())) * 100"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%riskPct >= 20, 'high', iif(%riskPct >= 10, 'intermediate', iif(%riskPct >= 5, 'borderline', 'low')))"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

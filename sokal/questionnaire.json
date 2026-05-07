@@ -1,0 +1,101 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "Sokal",
+  "title": "Sokal Index for Chronic Myelogenous Leukemia (CML)",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "The Sokal Index is a continuous prognostic risk score for newly diagnosed, chronic-phase Philadelphia chromosome-positive CML, derived by Sokal et al. (Blood 1984;63:789-799) from four pre-treatment covariates: age, palpable spleen size, platelet count, and peripheral blood blasts.",
+  "extension": [],
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "age",
+          "type": "decimal",
+          "text": "Age (years)",
+          "required": true
+        },
+        {
+          "linkId": "spleen_cm",
+          "type": "decimal",
+          "text": "Spleen size below left costal margin (cm; 0 if not palpable)",
+          "required": true
+        },
+        {
+          "linkId": "platelets",
+          "type": "decimal",
+          "text": "Platelet count (×10⁹/L)",
+          "required": true
+        },
+        {
+          "linkId": "blasts_pct",
+          "type": "decimal",
+          "text": "Peripheral blood blasts (%)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "score",
+          "type": "decimal",
+          "text": "Sokal score (relative hazard ratio)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "(0.0116 * (%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value - 43.4) + 0.0345 * (%resource.item.where(linkId='inputs').item.where(linkId='spleen_cm').answer.value - 7.51) + 0.188 * (((%resource.item.where(linkId='inputs').item.where(linkId='platelets').answer.value / 700) * (%resource.item.where(linkId='inputs').item.where(linkId='platelets').answer.value / 700)) - 0.563) + 0.0887 * (%resource.item.where(linkId='inputs').item.where(linkId='blasts_pct').answer.value - 2.10)).exp()"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_group",
+          "type": "string",
+          "text": "Risk group",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif((0.0116 * (%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value - 43.4) + 0.0345 * (%resource.item.where(linkId='inputs').item.where(linkId='spleen_cm').answer.value - 7.51) + 0.188 * (((%resource.item.where(linkId='inputs').item.where(linkId='platelets').answer.value / 700) * (%resource.item.where(linkId='inputs').item.where(linkId='platelets').answer.value / 700)) - 0.563) + 0.0887 * (%resource.item.where(linkId='inputs').item.where(linkId='blasts_pct').answer.value - 2.10)).exp() < 0.8, 'low', iif((0.0116 * (%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value - 43.4) + 0.0345 * (%resource.item.where(linkId='inputs').item.where(linkId='spleen_cm').answer.value - 7.51) + 0.188 * (((%resource.item.where(linkId='inputs').item.where(linkId='platelets').answer.value / 700) * (%resource.item.where(linkId='inputs').item.where(linkId='platelets').answer.value / 700)) - 0.563) + 0.0887 * (%resource.item.where(linkId='inputs').item.where(linkId='blasts_pct').answer.value - 2.10)).exp() > 1.2, 'high', 'intermediate'))"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

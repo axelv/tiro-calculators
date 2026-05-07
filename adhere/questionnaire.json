@@ -1,0 +1,266 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "Adhere",
+  "title": "ADHERE Algorithm — In-Hospital Mortality Risk in Acute Decompensated Heart Failure",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "CART-derived bedside risk-stratification rule for in-hospital mortality in patients hospitalized with acute decompensated heart failure. Uses admission BUN, systolic blood pressure, and serum creatinine to assign one of five mutually exclusive risk bands (Fonarow GC et al., JAMA 2005;293(5):572-580).",
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "BUN",
+          "type": "decimal",
+          "text": "Admission blood urea nitrogen — BUN (mg/dL)",
+          "required": true
+        },
+        {
+          "linkId": "SBP",
+          "type": "decimal",
+          "text": "Admission systolic blood pressure — SBP (mmHg)",
+          "required": true
+        },
+        {
+          "linkId": "Cr",
+          "type": "decimal",
+          "text": "Admission serum creatinine — Cr (mg/dL)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "risk_band",
+          "text": "ADHERE risk band",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "BUN",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='BUN').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SBP",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='SBP').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "Cr",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='Cr').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%BUN < 43, iif(%SBP >= 115, 'very_low', 'low'), iif(%SBP >= 115, 'intermediate', iif(%Cr < 2.75, 'high', 'very_high')))"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "adhere_label",
+          "text": "ADHERE / JAMA label",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "BUN",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='BUN').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SBP",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='SBP').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "Cr",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='Cr').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "riskBand",
+                "language": "text/fhirpath",
+                "expression": "iif(%BUN < 43, iif(%SBP >= 115, 'very_low', 'low'), iif(%SBP >= 115, 'intermediate', iif(%Cr < 2.75, 'high', 'very_high')))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%riskBand = 'very_low', 'Low Risk', iif(%riskBand = 'low', 'Intermediate Risk 3', iif(%riskBand = 'intermediate', 'Intermediate Risk 2', iif(%riskBand = 'high', 'Intermediate Risk 1', 'High Risk'))))"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "in_hospital_mortality_pct",
+          "text": "In-hospital mortality (derivation cohort, %)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "BUN",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='BUN').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SBP",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='SBP').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "Cr",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='Cr').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "riskBand",
+                "language": "text/fhirpath",
+                "expression": "iif(%BUN < 43, iif(%SBP >= 115, 'very_low', 'low'), iif(%SBP >= 115, 'intermediate', iif(%Cr < 2.75, 'high', 'very_high')))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%riskBand = 'very_low', 2.1, iif(%riskBand = 'low', 7.0, iif(%riskBand = 'intermediate', 9.4, iif(%riskBand = 'high', 15.3, 21.9))))"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "in_hospital_mortality_pct_validation",
+          "text": "In-hospital mortality (validation cohort, %)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "BUN",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='BUN').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "SBP",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='SBP').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "Cr",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='Cr').answer.value.first()"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "riskBand",
+                "language": "text/fhirpath",
+                "expression": "iif(%BUN < 43, iif(%SBP >= 115, 'very_low', 'low'), iif(%SBP >= 115, 'intermediate', iif(%Cr < 2.75, 'high', 'very_high')))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%riskBand = 'very_low', 2.0, iif(%riskBand = 'low', 5.7, iif(%riskBand = 'intermediate', 8.1, iif(%riskBand = 'high', 13.2, 21.4))))"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

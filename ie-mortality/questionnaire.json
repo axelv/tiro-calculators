@@ -1,0 +1,754 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "IeMortality",
+  "title": "Infective Endocarditis 6-Month Mortality Risk Score",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Validated risk score for predicting 6-month all-cause mortality in adults with definite infective endocarditis (IE), derived from the ICE-PCS cohort. Source: Park LP, Chu VH, Peterson G, et al. J Am Heart Assoc. 2016;5(4):e003016.",
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "age_band",
+          "text": "Age (years)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "le-45",
+                "display": "≤ 45 years"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "46-60",
+                "display": "46–60 years"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "61-70",
+                "display": "61–70 years"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "gt-70",
+                "display": "> 70 years"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "history_of_dialysis",
+          "text": "History of dialysis",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "no",
+                "display": "No dialysis history"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "yes",
+                "display": "On / history of dialysis"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "nosocomial",
+          "text": "Infection acquisition (nosocomial / healthcare-associated IE)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "no",
+                "display": "Community-acquired"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "yes",
+                "display": "Nosocomial / healthcare-associated"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "valve_type",
+          "text": "Infection type / valve",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "NVE",
+                "display": "Native valve (NVE)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "PVE",
+                "display": "Prosthetic valve (PVE)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "device",
+                "display": "Cardiac device-related"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "symptoms_gt_1_month",
+          "text": "Symptoms > 1 month before admission",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "no",
+                "display": "Acute presentation (≤ 1 month)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "yes",
+                "display": "Subacute (> 1 month symptoms)"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "pathogen",
+          "text": "Pathogen",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "s_aureus",
+                "display": "Staphylococcus aureus"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "vgs",
+                "display": "Viridans group streptococci"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "fungal",
+                "display": "Fungal"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "other",
+                "display": "Other / culture-negative"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "aortic_vegetation",
+          "text": "Aortic valve vegetation",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "no",
+                "display": "No aortic vegetation"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "yes",
+                "display": "Aortic vegetation"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "mitral_vegetation",
+          "text": "Mitral valve vegetation",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "no",
+                "display": "No mitral vegetation"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "yes",
+                "display": "Mitral vegetation"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "nyha_3_or_4_heart_failure",
+          "text": "Heart failure NYHA class III or IV",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "no",
+                "display": "No NYHA III/IV HF"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "yes",
+                "display": "NYHA III/IV heart failure"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "stroke",
+          "text": "Stroke (any clinically apparent stroke)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "no",
+                "display": "No stroke"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "yes",
+                "display": "Stroke present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "paravalvular_complication",
+          "text": "Paravalvular complication (abscess, fistula, dehiscence)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "no",
+                "display": "No paravalvular complication"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "yes",
+                "display": "Paravalvular complication"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "persistent_bacteremia",
+          "text": "Persistent bacteremia",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "no",
+                "display": "No persistent bacteremia"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "yes",
+                "display": "Persistent bacteremia"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "surgical_treatment",
+          "text": "Surgical treatment of IE (during the index admission)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "no",
+                "display": "No surgery"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/ie-mortality",
+                "code": "yes",
+                "display": "Surgery undertaken"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "score",
+          "text": "IE 6-month mortality score",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ageCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age_band').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "valveCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='valve_type').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "pathCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='pathogen').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "iif(%ageCode = '46-60', 2, iif(%ageCode = '61-70', 3, iif(%ageCode = 'gt-70', 4, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='history_of_dialysis').answer.value.code = 'yes', 3, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nosocomial').answer.value.code = 'yes', 2, 0) + iif(%valveCode = 'PVE' or %valveCode = 'device', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='symptoms_gt_1_month').answer.value.code = 'yes', -1, 0) + iif(%pathCode = 's_aureus', 1, iif(%pathCode = 'vgs', -2, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='aortic_vegetation').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='mitral_vegetation').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_3_or_4_heart_failure').answer.value.code = 'yes', 3, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='stroke').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='paravalvular_complication').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='persistent_bacteremia').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='surgical_treatment').answer.value.code = 'yes', -2, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%totalScore"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "probability_6mo_mortality",
+          "text": "Predicted 6-month all-cause mortality (probability, 0-1)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ageCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age_band').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "valveCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='valve_type').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "pathCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='pathogen').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "iif(%ageCode = '46-60', 2, iif(%ageCode = '61-70', 3, iif(%ageCode = 'gt-70', 4, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='history_of_dialysis').answer.value.code = 'yes', 3, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nosocomial').answer.value.code = 'yes', 2, 0) + iif(%valveCode = 'PVE' or %valveCode = 'device', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='symptoms_gt_1_month').answer.value.code = 'yes', -1, 0) + iif(%pathCode = 's_aureus', 1, iif(%pathCode = 'vgs', -2, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='aortic_vegetation').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='mitral_vegetation').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_3_or_4_heart_failure').answer.value.code = 'yes', 3, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='stroke').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='paravalvular_complication').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='persistent_bacteremia').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='surgical_treatment').answer.value.code = 'yes', -2, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "lp",
+                "language": "text/fhirpath",
+                "expression": "-4.849 + 2.416 * %totalScore + 0.109 * (%totalScore * %totalScore)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%lp > 30, 1.0, iif(%lp < -30, 0.0, %lp.exp() / (1 + %lp.exp())))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_band",
+          "text": "Quintile risk band",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ageCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age_band').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "valveCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='valve_type').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "pathCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='pathogen').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "iif(%ageCode = '46-60', 2, iif(%ageCode = '61-70', 3, iif(%ageCode = 'gt-70', 4, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='history_of_dialysis').answer.value.code = 'yes', 3, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nosocomial').answer.value.code = 'yes', 2, 0) + iif(%valveCode = 'PVE' or %valveCode = 'device', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='symptoms_gt_1_month').answer.value.code = 'yes', -1, 0) + iif(%pathCode = 's_aureus', 1, iif(%pathCode = 'vgs', -2, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='aortic_vegetation').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='mitral_vegetation').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_3_or_4_heart_failure').answer.value.code = 'yes', 3, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='stroke').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='paravalvular_complication').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='persistent_bacteremia').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='surgical_treatment').answer.value.code = 'yes', -2, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalScore < 0, 'Below Quintile 1 (very low)', iif(%totalScore <= 6, 'Quintile 1 (score 0-6): observed 10.3% 6-month mortality', iif(%totalScore <= 8, 'Quintile 2 (score 7-8): observed 17.0% 6-month mortality', iif(%totalScore <= 10, 'Quintile 3 (score 9-10): observed 25.5% 6-month mortality', iif(%totalScore <= 16, 'Quintile 4 (score 11-16): observed 37.8% 6-month mortality', 'Quintile 5 (score 17-22): observed 52.9% 6-month mortality')))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_band_observed_pct",
+          "text": "Observed quintile 6-month mortality (%)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ageCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age_band').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "valveCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='valve_type').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "pathCode",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='pathogen').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalScore",
+                "language": "text/fhirpath",
+                "expression": "iif(%ageCode = '46-60', 2, iif(%ageCode = '61-70', 3, iif(%ageCode = 'gt-70', 4, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='history_of_dialysis').answer.value.code = 'yes', 3, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nosocomial').answer.value.code = 'yes', 2, 0) + iif(%valveCode = 'PVE' or %valveCode = 'device', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='symptoms_gt_1_month').answer.value.code = 'yes', -1, 0) + iif(%pathCode = 's_aureus', 1, iif(%pathCode = 'vgs', -2, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='aortic_vegetation').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='mitral_vegetation').answer.value.code = 'yes', 1, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_3_or_4_heart_failure').answer.value.code = 'yes', 3, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='stroke').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='paravalvular_complication').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='persistent_bacteremia').answer.value.code = 'yes', 2, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='surgical_treatment').answer.value.code = 'yes', -2, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalScore <= 6, 10.3, iif(%totalScore <= 8, 17.0, iif(%totalScore <= 10, 25.5, iif(%totalScore <= 16, 37.8, 52.9))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "Killip",
+  "title": "Killip Classification for Heart Failure",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Bedside clinical classification that quantifies severity of heart failure in acute myocardial infarction (AMI) / acute coronary syndrome (ACS) and predicts short-term mortality. Source: Killip T, Kimball JT. Am J Cardiol. 1967;20(4):457-464; modern revalidation Khot et al. JAMA. 2003;290(16):2174-2181.",
+  "item": [
+    {
+      "linkId": "inputs",
+      "text": "Inputs",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "killip_class",
+          "text": "Killip class (highest applicable based on bedside exam)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/killip",
+                "code": "I",
+                "display": "Class I — No HF signs"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/killip",
+                "code": "II",
+                "display": "Class II — S3 and/or rales <50% of lung fields"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/killip",
+                "code": "III",
+                "display": "Class III — Pulmonary oedema, rales >50% of lung fields"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/killip",
+                "code": "IV",
+                "display": "Class IV — Cardiogenic shock"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "text": "Outputs",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "killip_class_output",
+          "text": "Killip class",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "killipClass",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='killip_class').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%killipClass"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "mortality_30d_modern_pct",
+          "text": "30-day mortality (Khot et al. 2003, modern NSTE-ACS cohort), %",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "killipClass",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='killip_class').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%killipClass = 'I', 2.8, iif(%killipClass = 'II', 8.8, iif(%killipClass = 'III', 14.4, iif(%killipClass = 'IV', 14.4, {}))))"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "mortality_6m_modern_pct",
+          "text": "6-month mortality (Khot et al. 2003, modern NSTE-ACS cohort), %",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "killipClass",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='killip_class').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%killipClass = 'I', 5.0, iif(%killipClass = 'II', 14.7, iif(%killipClass = 'III', 23.0, iif(%killipClass = 'IV', 23.0, {}))))"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "mortality_inhospital_original_pct",
+          "text": "In-hospital mortality (Killip & Kimball 1967, original cohort), %",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "killipClass",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='killip_class').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%killipClass = 'I', 6, iif(%killipClass = 'II', 17, iif(%killipClass = 'III', 38, iif(%killipClass = 'IV', 81, {}))))"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "interpretation",
+          "text": "Interpretation",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "killipClass",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='killip_class').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%killipClass = 'I', 'No clinical signs of heart failure; lowest mortality stratum.', iif(%killipClass = 'II', 'Mild–moderate left-ventricular failure; ~3× the Class I mortality.', iif(%killipClass = 'III', 'Acute pulmonary oedema; urgent reperfusion, NIV, IV diuretic, vasodilator therapy.', iif(%killipClass = 'IV', 'Cardiogenic shock; emergent revascularisation, vasopressors / inotropes, mechanical circulatory support.', {}))))"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

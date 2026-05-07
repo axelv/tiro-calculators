@@ -1,0 +1,229 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "RIss",
+  "title": "Revised International Staging System (R-ISS) for Multiple Myeloma",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Prognostic risk stratification at diagnosis of newly diagnosed multiple myeloma, combining the original ISS (β2-microglobulin and albumin), high-risk chromosomal abnormalities by iFISH (del(17p), t(4;14), t(14;16)), and serum LDH. Source: Palumbo A, Avet-Loiseau H, Oliva S, et al. J Clin Oncol. 2015;33(26):2863–2869.",
+  "item": [
+    {
+      "linkId": "inputs",
+      "text": "Inputs",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "b2m_band",
+          "text": "Serum β2-microglobulin (mg/L)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/r-iss",
+                "code": "lt-3-5",
+                "display": "< 3.5 mg/L"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/r-iss",
+                "code": "gte-3-5-lt-5-5",
+                "display": "3.5 to < 5.5 mg/L"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/r-iss",
+                "code": "gte-5-5",
+                "display": "≥ 5.5 mg/L"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "albumin_band",
+          "text": "Serum albumin (g/dL)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/r-iss",
+                "code": "lt-3-5",
+                "display": "< 3.5 g/dL"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/r-iss",
+                "code": "gte-3-5",
+                "display": "≥ 3.5 g/dL"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "high_risk_ca",
+          "text": "High-risk iFISH cytogenetic abnormality (del(17p), t(4;14), or t(14;16))",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/r-iss",
+                "code": "absent",
+                "display": "Absent (standard-risk)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/r-iss",
+                "code": "present",
+                "display": "Present (high-risk)"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "ldh_elevated",
+          "text": "Serum LDH",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/r-iss",
+                "code": "normal",
+                "display": "Normal (≤ ULN)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/r-iss",
+                "code": "elevated",
+                "display": "Elevated (> ULN)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "text": "Outputs",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "classification",
+          "text": "R-ISS stage",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "issStageI",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='b2m_band').answer.value.code = 'lt-3-5' and %resource.item.where(linkId='inputs').item.where(linkId='albumin_band').answer.value.code = 'gte-3-5'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "issStageIII",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='b2m_band').answer.value.code = 'gte-5-5'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "highRiskCA",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='high_risk_ca').answer.value.code = 'present'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "normalLDH",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='ldh_elevated').answer.value.code = 'normal'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%issStageI and %highRiskCA.not() and %normalLDH, 'R-ISS I', iif(%issStageIII and (%highRiskCA or %normalLDH.not()), 'R-ISS III', 'R-ISS II'))"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

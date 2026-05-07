@@ -1,0 +1,781 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "EuroscoreIi",
+  "title": "EuroSCORE II",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "EuroSCORE II is a logistic-regression risk model used by cardiac surgeons, cardiologists, and anaesthesiologists to estimate a patient's risk of in-hospital death after major cardiac surgery (Nashef et al., EJCTS 2012;41(4):734-745).",
+  "extension": [],
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "age",
+          "type": "decimal",
+          "text": "Age (years)",
+          "required": true
+        },
+        {
+          "linkId": "sex",
+          "type": "coding",
+          "text": "Sex",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "male",
+                "display": "Male"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "female",
+                "display": "Female"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "renal_function",
+          "type": "coding",
+          "text": "Renal function",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "normal_cc_gt_85",
+                "display": "Normal (CC > 85 mL/min)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "moderate_cc_50_85",
+                "display": "Moderate (CC 50-85 mL/min)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "severe_cc_lt_50",
+                "display": "Severe (CC < 50 mL/min)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "dialysis",
+                "display": "On dialysis"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "extracardiac_arteriopathy",
+          "type": "coding",
+          "text": "Extracardiac arteriopathy",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "poor_mobility",
+          "type": "coding",
+          "text": "Poor mobility (neurological/musculoskeletal)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "previous_cardiac_surgery",
+          "type": "coding",
+          "text": "Previous cardiac surgery",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "chronic_lung_disease",
+          "type": "coding",
+          "text": "Chronic lung disease",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "active_endocarditis",
+          "type": "coding",
+          "text": "Active endocarditis",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "critical_preoperative_state",
+          "type": "coding",
+          "text": "Critical preoperative state",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "diabetes_on_insulin",
+          "type": "coding",
+          "text": "Insulin-dependent diabetes",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "nyha_class",
+          "type": "coding",
+          "text": "NYHA class",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "I",
+                "display": "I"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "II",
+                "display": "II"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "III",
+                "display": "III"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "IV",
+                "display": "IV"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "ccs_class_4",
+          "type": "coding",
+          "text": "CCS class 4 angina",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "lv_function",
+          "type": "coding",
+          "text": "LV function",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "good_ge_51",
+                "display": "Good (>= 51 %)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "moderate_31_50",
+                "display": "Moderate (31-50 %)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "poor_21_30",
+                "display": "Poor (21-30 %)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "very_poor_le_20",
+                "display": "Very poor (<= 20 %)"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "recent_mi",
+          "type": "coding",
+          "text": "Recent MI (<= 90 days)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "pa_systolic_pressure",
+          "type": "coding",
+          "text": "PA systolic pressure",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "lt_31",
+                "display": "< 31 mmHg"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "moderate_31_55",
+                "display": "31-55 mmHg"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "severe_ge_55",
+                "display": ">= 55 mmHg"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "urgency",
+          "type": "coding",
+          "text": "Urgency",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "elective",
+                "display": "Elective"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "urgent",
+                "display": "Urgent"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "emergency",
+                "display": "Emergency"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "salvage",
+                "display": "Salvage"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "weight_of_procedure",
+          "type": "coding",
+          "text": "Weight of procedure",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "isolated_cabg",
+                "display": "Isolated CABG"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "single_non_cabg",
+                "display": "Single non-CABG"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "two_procedures",
+                "display": "Two procedures"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "three_or_more",
+                "display": "Three or more procedures"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "thoracic_aorta_surgery",
+          "type": "coding",
+          "text": "Thoracic aorta surgery",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "no",
+                "display": "No"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/euroscore-ii",
+                "code": "yes",
+                "display": "Yes"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "linear_predictor",
+          "type": "decimal",
+          "text": "Linear predictor (y)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "-5.324537 + 0.0285181 * iif(%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value <= 60, 1, %resource.item.where(linkId='inputs').item.where(linkId='age').answer.value - 59) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code = 'female', 0.2196434, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'II', 0.1070545, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'III', 0.2958358, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'IV', 0.5597929, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ccs_class_4').answer.value.code = 'yes', 0.2226147, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='diabetes_on_insulin').answer.value.code = 'yes', 0.3542749, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='extracardiac_arteriopathy').answer.value.code = 'yes', 0.5360268, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='chronic_lung_disease').answer.value.code = 'yes', 0.1886564, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='poor_mobility').answer.value.code = 'yes', 0.2407181, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='previous_cardiac_surgery').answer.value.code = 'yes', 1.118599, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'moderate_cc_50_85', 0.303553, iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'severe_cc_lt_50', 0.8592256, iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'dialysis', 0.6421508, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='active_endocarditis').answer.value.code = 'yes', 0.6194522, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='critical_preoperative_state').answer.value.code = 'yes', 1.086517, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'moderate_31_50', 0.3150652, iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'poor_21_30', 0.8084096, iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'very_poor_le_20', 0.9346919, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='recent_mi').answer.value.code = 'yes', 0.1528943, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pa_systolic_pressure').answer.value.code = 'moderate_31_55', 0.1788899, iif(%resource.item.where(linkId='inputs').item.where(linkId='pa_systolic_pressure').answer.value.code = 'severe_ge_55', 0.3491475, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'urgent', 0.3174673, iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'emergency', 0.7039121, iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'salvage', 1.362947, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'single_non_cabg', 0.0062118, iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'two_procedures', 0.5521478, iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'three_or_more', 0.9724533, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='thoracic_aorta_surgery').answer.value.code = 'yes', 0.6527205, 0)"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "predicted_mortality_percent",
+          "type": "decimal",
+          "text": "Predicted in-hospital mortality (%)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "((-5.324537 + 0.0285181 * iif(%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value <= 60, 1, %resource.item.where(linkId='inputs').item.where(linkId='age').answer.value - 59) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code = 'female', 0.2196434, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'II', 0.1070545, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'III', 0.2958358, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'IV', 0.5597929, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ccs_class_4').answer.value.code = 'yes', 0.2226147, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='diabetes_on_insulin').answer.value.code = 'yes', 0.3542749, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='extracardiac_arteriopathy').answer.value.code = 'yes', 0.5360268, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='chronic_lung_disease').answer.value.code = 'yes', 0.1886564, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='poor_mobility').answer.value.code = 'yes', 0.2407181, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='previous_cardiac_surgery').answer.value.code = 'yes', 1.118599, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'moderate_cc_50_85', 0.303553, iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'severe_cc_lt_50', 0.8592256, iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'dialysis', 0.6421508, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='active_endocarditis').answer.value.code = 'yes', 0.6194522, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='critical_preoperative_state').answer.value.code = 'yes', 1.086517, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'moderate_31_50', 0.3150652, iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'poor_21_30', 0.8084096, iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'very_poor_le_20', 0.9346919, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='recent_mi').answer.value.code = 'yes', 0.1528943, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pa_systolic_pressure').answer.value.code = 'moderate_31_55', 0.1788899, iif(%resource.item.where(linkId='inputs').item.where(linkId='pa_systolic_pressure').answer.value.code = 'severe_ge_55', 0.3491475, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'urgent', 0.3174673, iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'emergency', 0.7039121, iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'salvage', 1.362947, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'single_non_cabg', 0.0062118, iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'two_procedures', 0.5521478, iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'three_or_more', 0.9724533, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='thoracic_aorta_surgery').answer.value.code = 'yes', 0.6527205, 0)).exp() / (1 + (-5.324537 + 0.0285181 * iif(%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value <= 60, 1, %resource.item.where(linkId='inputs').item.where(linkId='age').answer.value - 59) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code = 'female', 0.2196434, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'II', 0.1070545, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'III', 0.2958358, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'IV', 0.5597929, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ccs_class_4').answer.value.code = 'yes', 0.2226147, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='diabetes_on_insulin').answer.value.code = 'yes', 0.3542749, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='extracardiac_arteriopathy').answer.value.code = 'yes', 0.5360268, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='chronic_lung_disease').answer.value.code = 'yes', 0.1886564, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='poor_mobility').answer.value.code = 'yes', 0.2407181, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='previous_cardiac_surgery').answer.value.code = 'yes', 1.118599, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'moderate_cc_50_85', 0.303553, iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'severe_cc_lt_50', 0.8592256, iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'dialysis', 0.6421508, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='active_endocarditis').answer.value.code = 'yes', 0.6194522, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='critical_preoperative_state').answer.value.code = 'yes', 1.086517, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'moderate_31_50', 0.3150652, iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'poor_21_30', 0.8084096, iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'very_poor_le_20', 0.9346919, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='recent_mi').answer.value.code = 'yes', 0.1528943, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pa_systolic_pressure').answer.value.code = 'moderate_31_55', 0.1788899, iif(%resource.item.where(linkId='inputs').item.where(linkId='pa_systolic_pressure').answer.value.code = 'severe_ge_55', 0.3491475, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'urgent', 0.3174673, iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'emergency', 0.7039121, iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'salvage', 1.362947, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'single_non_cabg', 0.0062118, iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'two_procedures', 0.5521478, iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'three_or_more', 0.9724533, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='thoracic_aorta_surgery').answer.value.code = 'yes', 0.6527205, 0)).exp())) * 100"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_stratum",
+          "type": "string",
+          "text": "Risk stratum",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(((-5.324537 + 0.0285181 * iif(%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value <= 60, 1, %resource.item.where(linkId='inputs').item.where(linkId='age').answer.value - 59) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code = 'female', 0.2196434, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'II', 0.1070545, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'III', 0.2958358, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'IV', 0.5597929, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ccs_class_4').answer.value.code = 'yes', 0.2226147, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='diabetes_on_insulin').answer.value.code = 'yes', 0.3542749, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='extracardiac_arteriopathy').answer.value.code = 'yes', 0.5360268, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='chronic_lung_disease').answer.value.code = 'yes', 0.1886564, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='poor_mobility').answer.value.code = 'yes', 0.2407181, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='previous_cardiac_surgery').answer.value.code = 'yes', 1.118599, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'moderate_cc_50_85', 0.303553, iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'severe_cc_lt_50', 0.8592256, iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'dialysis', 0.6421508, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='active_endocarditis').answer.value.code = 'yes', 0.6194522, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='critical_preoperative_state').answer.value.code = 'yes', 1.086517, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'moderate_31_50', 0.3150652, iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'poor_21_30', 0.8084096, iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'very_poor_le_20', 0.9346919, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='recent_mi').answer.value.code = 'yes', 0.1528943, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pa_systolic_pressure').answer.value.code = 'moderate_31_55', 0.1788899, iif(%resource.item.where(linkId='inputs').item.where(linkId='pa_systolic_pressure').answer.value.code = 'severe_ge_55', 0.3491475, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'urgent', 0.3174673, iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'emergency', 0.7039121, iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'salvage', 1.362947, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'single_non_cabg', 0.0062118, iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'two_procedures', 0.5521478, iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'three_or_more', 0.9724533, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='thoracic_aorta_surgery').answer.value.code = 'yes', 0.6527205, 0)).exp() / (1 + (-5.324537 + 0.0285181 * iif(%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value <= 60, 1, %resource.item.where(linkId='inputs').item.where(linkId='age').answer.value - 59) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code = 'female', 0.2196434, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'II', 0.1070545, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'III', 0.2958358, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'IV', 0.5597929, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ccs_class_4').answer.value.code = 'yes', 0.2226147, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='diabetes_on_insulin').answer.value.code = 'yes', 0.3542749, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='extracardiac_arteriopathy').answer.value.code = 'yes', 0.5360268, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='chronic_lung_disease').answer.value.code = 'yes', 0.1886564, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='poor_mobility').answer.value.code = 'yes', 0.2407181, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='previous_cardiac_surgery').answer.value.code = 'yes', 1.118599, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'moderate_cc_50_85', 0.303553, iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'severe_cc_lt_50', 0.8592256, iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'dialysis', 0.6421508, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='active_endocarditis').answer.value.code = 'yes', 0.6194522, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='critical_preoperative_state').answer.value.code = 'yes', 1.086517, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'moderate_31_50', 0.3150652, iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'poor_21_30', 0.8084096, iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'very_poor_le_20', 0.9346919, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='recent_mi').answer.value.code = 'yes', 0.1528943, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pa_systolic_pressure').answer.value.code = 'moderate_31_55', 0.1788899, iif(%resource.item.where(linkId='inputs').item.where(linkId='pa_systolic_pressure').answer.value.code = 'severe_ge_55', 0.3491475, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'urgent', 0.3174673, iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'emergency', 0.7039121, iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'salvage', 1.362947, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'single_non_cabg', 0.0062118, iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'two_procedures', 0.5521478, iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'three_or_more', 0.9724533, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='thoracic_aorta_surgery').answer.value.code = 'yes', 0.6527205, 0)).exp())) * 100 < 4, 'Low', iif(((-5.324537 + 0.0285181 * iif(%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value <= 60, 1, %resource.item.where(linkId='inputs').item.where(linkId='age').answer.value - 59) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code = 'female', 0.2196434, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'II', 0.1070545, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'III', 0.2958358, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'IV', 0.5597929, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ccs_class_4').answer.value.code = 'yes', 0.2226147, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='diabetes_on_insulin').answer.value.code = 'yes', 0.3542749, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='extracardiac_arteriopathy').answer.value.code = 'yes', 0.5360268, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='chronic_lung_disease').answer.value.code = 'yes', 0.1886564, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='poor_mobility').answer.value.code = 'yes', 0.2407181, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='previous_cardiac_surgery').answer.value.code = 'yes', 1.118599, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'moderate_cc_50_85', 0.303553, iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'severe_cc_lt_50', 0.8592256, iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'dialysis', 0.6421508, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='active_endocarditis').answer.value.code = 'yes', 0.6194522, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='critical_preoperative_state').answer.value.code = 'yes', 1.086517, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'moderate_31_50', 0.3150652, iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'poor_21_30', 0.8084096, iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'very_poor_le_20', 0.9346919, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='recent_mi').answer.value.code = 'yes', 0.1528943, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pa_systolic_pressure').answer.value.code = 'moderate_31_55', 0.1788899, iif(%resource.item.where(linkId='inputs').item.where(linkId='pa_systolic_pressure').answer.value.code = 'severe_ge_55', 0.3491475, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'urgent', 0.3174673, iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'emergency', 0.7039121, iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'salvage', 1.362947, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'single_non_cabg', 0.0062118, iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'two_procedures', 0.5521478, iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'three_or_more', 0.9724533, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='thoracic_aorta_surgery').answer.value.code = 'yes', 0.6527205, 0)).exp() / (1 + (-5.324537 + 0.0285181 * iif(%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value <= 60, 1, %resource.item.where(linkId='inputs').item.where(linkId='age').answer.value - 59) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code = 'female', 0.2196434, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'II', 0.1070545, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'III', 0.2958358, iif(%resource.item.where(linkId='inputs').item.where(linkId='nyha_class').answer.value.code = 'IV', 0.5597929, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='ccs_class_4').answer.value.code = 'yes', 0.2226147, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='diabetes_on_insulin').answer.value.code = 'yes', 0.3542749, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='extracardiac_arteriopathy').answer.value.code = 'yes', 0.5360268, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='chronic_lung_disease').answer.value.code = 'yes', 0.1886564, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='poor_mobility').answer.value.code = 'yes', 0.2407181, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='previous_cardiac_surgery').answer.value.code = 'yes', 1.118599, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'moderate_cc_50_85', 0.303553, iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'severe_cc_lt_50', 0.8592256, iif(%resource.item.where(linkId='inputs').item.where(linkId='renal_function').answer.value.code = 'dialysis', 0.6421508, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='active_endocarditis').answer.value.code = 'yes', 0.6194522, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='critical_preoperative_state').answer.value.code = 'yes', 1.086517, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'moderate_31_50', 0.3150652, iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'poor_21_30', 0.8084096, iif(%resource.item.where(linkId='inputs').item.where(linkId='lv_function').answer.value.code = 'very_poor_le_20', 0.9346919, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='recent_mi').answer.value.code = 'yes', 0.1528943, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pa_systolic_pressure').answer.value.code = 'moderate_31_55', 0.1788899, iif(%resource.item.where(linkId='inputs').item.where(linkId='pa_systolic_pressure').answer.value.code = 'severe_ge_55', 0.3491475, 0)) + iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'urgent', 0.3174673, iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'emergency', 0.7039121, iif(%resource.item.where(linkId='inputs').item.where(linkId='urgency').answer.value.code = 'salvage', 1.362947, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'single_non_cabg', 0.0062118, iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'two_procedures', 0.5521478, iif(%resource.item.where(linkId='inputs').item.where(linkId='weight_of_procedure').answer.value.code = 'three_or_more', 0.9724533, 0))) + iif(%resource.item.where(linkId='inputs').item.where(linkId='thoracic_aorta_surgery').answer.value.code = 'yes', 0.6527205, 0)).exp())) * 100 < 8, 'Intermediate', 'High'))"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

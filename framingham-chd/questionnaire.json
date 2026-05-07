@@ -1,0 +1,673 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "FraminghamChd",
+  "title": "Framingham Risk Score for Hard Coronary Heart Disease (10-Year)",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Estimates 10-year risk of hard coronary heart disease (myocardial infarction or coronary death) in adults without prior CHD using the ATP III point-table operationalisation of Wilson PWF et al., Circulation 1998;97(18):1837-1847. The point system is sex-stratified and age-stratified across age, total cholesterol, smoking, HDL, and systolic blood pressure (untreated/treated).",
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "sex",
+          "text": "Sex",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/framingham-chd",
+                "code": "male",
+                "display": "Male"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/framingham-chd",
+                "code": "female",
+                "display": "Female"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "age",
+          "text": "Age (years)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "total_chol",
+          "text": "Total cholesterol (mg/dL)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "hdl",
+          "text": "HDL cholesterol (mg/dL)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "sbp",
+          "text": "Systolic blood pressure (mm Hg)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "treated_htn",
+          "text": "Treated for hypertension",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/framingham-chd",
+                "code": "no",
+                "display": "Untreated hypertension"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/framingham-chd",
+                "code": "yes",
+                "display": "Treated hypertension"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "smoker",
+          "text": "Current smoker",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/framingham-chd",
+                "code": "no",
+                "display": "Non-smoker"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/framingham-chd",
+                "code": "yes",
+                "display": "Current smoker"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "total_points",
+          "text": "Total points",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sex",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "age",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "tc",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='total_chol').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hdl",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='hdl').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sbp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sbp').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "treated",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='treated_htn').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "smoker",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='smoker').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsAge",
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%age < 35, -9, iif(%age < 40, -4, iif(%age < 45, 0, iif(%age < 50, 3, iif(%age < 55, 6, iif(%age < 60, 8, iif(%age < 65, 10, iif(%age < 70, 11, iif(%age < 75, 12, 13))))))))), iif(%age < 35, -7, iif(%age < 40, -3, iif(%age < 45, 0, iif(%age < 50, 3, iif(%age < 55, 6, iif(%age < 60, 8, iif(%age < 65, 10, iif(%age < 70, 12, iif(%age < 75, 14, 16))))))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsTc",
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%age < 40, iif(%tc < 160, 0, iif(%tc < 200, 4, iif(%tc < 240, 7, iif(%tc < 280, 9, 11)))), iif(%age < 50, iif(%tc < 160, 0, iif(%tc < 200, 3, iif(%tc < 240, 5, iif(%tc < 280, 6, 8)))), iif(%age < 60, iif(%tc < 160, 0, iif(%tc < 200, 2, iif(%tc < 240, 3, iif(%tc < 280, 4, 5)))), iif(%age < 70, iif(%tc < 160, 0, iif(%tc < 200, 1, iif(%tc < 240, 1, iif(%tc < 280, 2, 3)))), iif(%tc < 160, 0, iif(%tc < 200, 0, iif(%tc < 240, 0, iif(%tc < 280, 1, 1)))))))), iif(%age < 40, iif(%tc < 160, 0, iif(%tc < 200, 4, iif(%tc < 240, 8, iif(%tc < 280, 11, 13)))), iif(%age < 50, iif(%tc < 160, 0, iif(%tc < 200, 3, iif(%tc < 240, 6, iif(%tc < 280, 8, 10)))), iif(%age < 60, iif(%tc < 160, 0, iif(%tc < 200, 2, iif(%tc < 240, 4, iif(%tc < 280, 5, 7)))), iif(%age < 70, iif(%tc < 160, 0, iif(%tc < 200, 1, iif(%tc < 240, 2, iif(%tc < 280, 3, 4)))), iif(%tc < 160, 0, iif(%tc < 200, 1, iif(%tc < 240, 1, iif(%tc < 280, 2, 2)))))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsSmk",
+                "language": "text/fhirpath",
+                "expression": "iif(%smoker = false, 0, iif(%sex = 'male', iif(%age < 40, 8, iif(%age < 50, 5, iif(%age < 60, 3, iif(%age < 70, 1, 1)))), iif(%age < 40, 9, iif(%age < 50, 7, iif(%age < 60, 4, iif(%age < 70, 2, 1))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsHdl",
+                "language": "text/fhirpath",
+                "expression": "iif(%hdl >= 60, -1, iif(%hdl >= 50, 0, iif(%hdl >= 40, 1, 2)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsSbp",
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%treated = false, iif(%sbp < 120, 0, iif(%sbp < 130, 0, iif(%sbp < 140, 1, iif(%sbp < 160, 1, 2)))), iif(%sbp < 120, 0, iif(%sbp < 130, 1, iif(%sbp < 140, 2, iif(%sbp < 160, 2, 3))))), iif(%treated = false, iif(%sbp < 120, 0, iif(%sbp < 130, 1, iif(%sbp < 140, 2, iif(%sbp < 160, 3, 4)))), iif(%sbp < 120, 0, iif(%sbp < 130, 3, iif(%sbp < 140, 4, iif(%sbp < 160, 5, 6))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%ptsAge + %ptsTc + %ptsSmk + %ptsHdl + %ptsSbp"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_10yr_pct",
+          "text": "10-year hard CHD risk",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sex",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "age",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "tc",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='total_chol').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hdl",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='hdl').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sbp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sbp').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "treated",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='treated_htn').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "smoker",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='smoker').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsAge",
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%age < 35, -9, iif(%age < 40, -4, iif(%age < 45, 0, iif(%age < 50, 3, iif(%age < 55, 6, iif(%age < 60, 8, iif(%age < 65, 10, iif(%age < 70, 11, iif(%age < 75, 12, 13))))))))), iif(%age < 35, -7, iif(%age < 40, -3, iif(%age < 45, 0, iif(%age < 50, 3, iif(%age < 55, 6, iif(%age < 60, 8, iif(%age < 65, 10, iif(%age < 70, 12, iif(%age < 75, 14, 16))))))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsTc",
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%age < 40, iif(%tc < 160, 0, iif(%tc < 200, 4, iif(%tc < 240, 7, iif(%tc < 280, 9, 11)))), iif(%age < 50, iif(%tc < 160, 0, iif(%tc < 200, 3, iif(%tc < 240, 5, iif(%tc < 280, 6, 8)))), iif(%age < 60, iif(%tc < 160, 0, iif(%tc < 200, 2, iif(%tc < 240, 3, iif(%tc < 280, 4, 5)))), iif(%age < 70, iif(%tc < 160, 0, iif(%tc < 200, 1, iif(%tc < 240, 1, iif(%tc < 280, 2, 3)))), iif(%tc < 160, 0, iif(%tc < 200, 0, iif(%tc < 240, 0, iif(%tc < 280, 1, 1)))))))), iif(%age < 40, iif(%tc < 160, 0, iif(%tc < 200, 4, iif(%tc < 240, 8, iif(%tc < 280, 11, 13)))), iif(%age < 50, iif(%tc < 160, 0, iif(%tc < 200, 3, iif(%tc < 240, 6, iif(%tc < 280, 8, 10)))), iif(%age < 60, iif(%tc < 160, 0, iif(%tc < 200, 2, iif(%tc < 240, 4, iif(%tc < 280, 5, 7)))), iif(%age < 70, iif(%tc < 160, 0, iif(%tc < 200, 1, iif(%tc < 240, 2, iif(%tc < 280, 3, 4)))), iif(%tc < 160, 0, iif(%tc < 200, 1, iif(%tc < 240, 1, iif(%tc < 280, 2, 2)))))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsSmk",
+                "language": "text/fhirpath",
+                "expression": "iif(%smoker = false, 0, iif(%sex = 'male', iif(%age < 40, 8, iif(%age < 50, 5, iif(%age < 60, 3, iif(%age < 70, 1, 1)))), iif(%age < 40, 9, iif(%age < 50, 7, iif(%age < 60, 4, iif(%age < 70, 2, 1))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsHdl",
+                "language": "text/fhirpath",
+                "expression": "iif(%hdl >= 60, -1, iif(%hdl >= 50, 0, iif(%hdl >= 40, 1, 2)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsSbp",
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%treated = false, iif(%sbp < 120, 0, iif(%sbp < 130, 0, iif(%sbp < 140, 1, iif(%sbp < 160, 1, 2)))), iif(%sbp < 120, 0, iif(%sbp < 130, 1, iif(%sbp < 140, 2, iif(%sbp < 160, 2, 3))))), iif(%treated = false, iif(%sbp < 120, 0, iif(%sbp < 130, 1, iif(%sbp < 140, 2, iif(%sbp < 160, 3, 4)))), iif(%sbp < 120, 0, iif(%sbp < 130, 3, iif(%sbp < 140, 4, iif(%sbp < 160, 5, 6))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalPoints",
+                "language": "text/fhirpath",
+                "expression": "%ptsAge + %ptsTc + %ptsSmk + %ptsHdl + %ptsSbp"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%totalPoints < 1, '< 1 %', iif(%totalPoints <= 4, '1 %', iif(%totalPoints <= 6, '2 %', iif(%totalPoints = 7, '3 %', iif(%totalPoints = 8, '4 %', iif(%totalPoints = 9, '5 %', iif(%totalPoints = 10, '6 %', iif(%totalPoints = 11, '8 %', iif(%totalPoints = 12, '10 %', iif(%totalPoints = 13, '12 %', iif(%totalPoints = 14, '16 %', iif(%totalPoints = 15, '20 %', iif(%totalPoints = 16, '25 %', '>= 30 %'))))))))))))), iif(%totalPoints < 9, '< 1 %', iif(%totalPoints <= 12, '1 %', iif(%totalPoints <= 14, '2 %', iif(%totalPoints = 15, '3 %', iif(%totalPoints = 16, '4 %', iif(%totalPoints = 17, '5 %', iif(%totalPoints = 18, '6 %', iif(%totalPoints = 19, '8 %', iif(%totalPoints = 20, '11 %', iif(%totalPoints = 21, '14 %', iif(%totalPoints = 22, '17 %', iif(%totalPoints = 23, '22 %', iif(%totalPoints = 24, '27 %', '>= 30 %'))))))))))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_10yr_pct_numeric",
+          "text": "10-year hard CHD risk (numeric, %)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sex",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "age",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "tc",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='total_chol').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hdl",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='hdl').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sbp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sbp').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "treated",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='treated_htn').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "smoker",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='smoker').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsAge",
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%age < 35, -9, iif(%age < 40, -4, iif(%age < 45, 0, iif(%age < 50, 3, iif(%age < 55, 6, iif(%age < 60, 8, iif(%age < 65, 10, iif(%age < 70, 11, iif(%age < 75, 12, 13))))))))), iif(%age < 35, -7, iif(%age < 40, -3, iif(%age < 45, 0, iif(%age < 50, 3, iif(%age < 55, 6, iif(%age < 60, 8, iif(%age < 65, 10, iif(%age < 70, 12, iif(%age < 75, 14, 16))))))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsTc",
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%age < 40, iif(%tc < 160, 0, iif(%tc < 200, 4, iif(%tc < 240, 7, iif(%tc < 280, 9, 11)))), iif(%age < 50, iif(%tc < 160, 0, iif(%tc < 200, 3, iif(%tc < 240, 5, iif(%tc < 280, 6, 8)))), iif(%age < 60, iif(%tc < 160, 0, iif(%tc < 200, 2, iif(%tc < 240, 3, iif(%tc < 280, 4, 5)))), iif(%age < 70, iif(%tc < 160, 0, iif(%tc < 200, 1, iif(%tc < 240, 1, iif(%tc < 280, 2, 3)))), iif(%tc < 160, 0, iif(%tc < 200, 0, iif(%tc < 240, 0, iif(%tc < 280, 1, 1)))))))), iif(%age < 40, iif(%tc < 160, 0, iif(%tc < 200, 4, iif(%tc < 240, 8, iif(%tc < 280, 11, 13)))), iif(%age < 50, iif(%tc < 160, 0, iif(%tc < 200, 3, iif(%tc < 240, 6, iif(%tc < 280, 8, 10)))), iif(%age < 60, iif(%tc < 160, 0, iif(%tc < 200, 2, iif(%tc < 240, 4, iif(%tc < 280, 5, 7)))), iif(%age < 70, iif(%tc < 160, 0, iif(%tc < 200, 1, iif(%tc < 240, 2, iif(%tc < 280, 3, 4)))), iif(%tc < 160, 0, iif(%tc < 200, 1, iif(%tc < 240, 1, iif(%tc < 280, 2, 2)))))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsSmk",
+                "language": "text/fhirpath",
+                "expression": "iif(%smoker = false, 0, iif(%sex = 'male', iif(%age < 40, 8, iif(%age < 50, 5, iif(%age < 60, 3, iif(%age < 70, 1, 1)))), iif(%age < 40, 9, iif(%age < 50, 7, iif(%age < 60, 4, iif(%age < 70, 2, 1))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsHdl",
+                "language": "text/fhirpath",
+                "expression": "iif(%hdl >= 60, -1, iif(%hdl >= 50, 0, iif(%hdl >= 40, 1, 2)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsSbp",
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%treated = false, iif(%sbp < 120, 0, iif(%sbp < 130, 0, iif(%sbp < 140, 1, iif(%sbp < 160, 1, 2)))), iif(%sbp < 120, 0, iif(%sbp < 130, 1, iif(%sbp < 140, 2, iif(%sbp < 160, 2, 3))))), iif(%treated = false, iif(%sbp < 120, 0, iif(%sbp < 130, 1, iif(%sbp < 140, 2, iif(%sbp < 160, 3, 4)))), iif(%sbp < 120, 0, iif(%sbp < 130, 3, iif(%sbp < 140, 4, iif(%sbp < 160, 5, 6))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalPoints",
+                "language": "text/fhirpath",
+                "expression": "%ptsAge + %ptsTc + %ptsSmk + %ptsHdl + %ptsSbp"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%totalPoints < 1, 0.5, iif(%totalPoints <= 4, 1, iif(%totalPoints <= 6, 2, iif(%totalPoints = 7, 3, iif(%totalPoints = 8, 4, iif(%totalPoints = 9, 5, iif(%totalPoints = 10, 6, iif(%totalPoints = 11, 8, iif(%totalPoints = 12, 10, iif(%totalPoints = 13, 12, iif(%totalPoints = 14, 16, iif(%totalPoints = 15, 20, iif(%totalPoints = 16, 25, 30))))))))))))), iif(%totalPoints < 9, 0.5, iif(%totalPoints <= 12, 1, iif(%totalPoints <= 14, 2, iif(%totalPoints = 15, 3, iif(%totalPoints = 16, 4, iif(%totalPoints = 17, 5, iif(%totalPoints = 18, 6, iif(%totalPoints = 19, 8, iif(%totalPoints = 20, 11, iif(%totalPoints = 21, 14, iif(%totalPoints = 22, 17, iif(%totalPoints = 23, 22, iif(%totalPoints = 24, 27, 30))))))))))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_category",
+          "text": "ATP III risk category",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sex",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sex').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "age",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "tc",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='total_chol').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hdl",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='hdl').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sbp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='sbp').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "treated",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='treated_htn').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "smoker",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='smoker').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsAge",
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%age < 35, -9, iif(%age < 40, -4, iif(%age < 45, 0, iif(%age < 50, 3, iif(%age < 55, 6, iif(%age < 60, 8, iif(%age < 65, 10, iif(%age < 70, 11, iif(%age < 75, 12, 13))))))))), iif(%age < 35, -7, iif(%age < 40, -3, iif(%age < 45, 0, iif(%age < 50, 3, iif(%age < 55, 6, iif(%age < 60, 8, iif(%age < 65, 10, iif(%age < 70, 12, iif(%age < 75, 14, 16))))))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsTc",
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%age < 40, iif(%tc < 160, 0, iif(%tc < 200, 4, iif(%tc < 240, 7, iif(%tc < 280, 9, 11)))), iif(%age < 50, iif(%tc < 160, 0, iif(%tc < 200, 3, iif(%tc < 240, 5, iif(%tc < 280, 6, 8)))), iif(%age < 60, iif(%tc < 160, 0, iif(%tc < 200, 2, iif(%tc < 240, 3, iif(%tc < 280, 4, 5)))), iif(%age < 70, iif(%tc < 160, 0, iif(%tc < 200, 1, iif(%tc < 240, 1, iif(%tc < 280, 2, 3)))), iif(%tc < 160, 0, iif(%tc < 200, 0, iif(%tc < 240, 0, iif(%tc < 280, 1, 1)))))))), iif(%age < 40, iif(%tc < 160, 0, iif(%tc < 200, 4, iif(%tc < 240, 8, iif(%tc < 280, 11, 13)))), iif(%age < 50, iif(%tc < 160, 0, iif(%tc < 200, 3, iif(%tc < 240, 6, iif(%tc < 280, 8, 10)))), iif(%age < 60, iif(%tc < 160, 0, iif(%tc < 200, 2, iif(%tc < 240, 4, iif(%tc < 280, 5, 7)))), iif(%age < 70, iif(%tc < 160, 0, iif(%tc < 200, 1, iif(%tc < 240, 2, iif(%tc < 280, 3, 4)))), iif(%tc < 160, 0, iif(%tc < 200, 1, iif(%tc < 240, 1, iif(%tc < 280, 2, 2)))))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsSmk",
+                "language": "text/fhirpath",
+                "expression": "iif(%smoker = false, 0, iif(%sex = 'male', iif(%age < 40, 8, iif(%age < 50, 5, iif(%age < 60, 3, iif(%age < 70, 1, 1)))), iif(%age < 40, 9, iif(%age < 50, 7, iif(%age < 60, 4, iif(%age < 70, 2, 1))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsHdl",
+                "language": "text/fhirpath",
+                "expression": "iif(%hdl >= 60, -1, iif(%hdl >= 50, 0, iif(%hdl >= 40, 1, 2)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsSbp",
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%treated = false, iif(%sbp < 120, 0, iif(%sbp < 130, 0, iif(%sbp < 140, 1, iif(%sbp < 160, 1, 2)))), iif(%sbp < 120, 0, iif(%sbp < 130, 1, iif(%sbp < 140, 2, iif(%sbp < 160, 2, 3))))), iif(%treated = false, iif(%sbp < 120, 0, iif(%sbp < 130, 1, iif(%sbp < 140, 2, iif(%sbp < 160, 3, 4)))), iif(%sbp < 120, 0, iif(%sbp < 130, 3, iif(%sbp < 140, 4, iif(%sbp < 160, 5, 6))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalPoints",
+                "language": "text/fhirpath",
+                "expression": "%ptsAge + %ptsTc + %ptsSmk + %ptsHdl + %ptsSbp"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "riskNumeric",
+                "language": "text/fhirpath",
+                "expression": "iif(%sex = 'male', iif(%totalPoints < 1, 0.5, iif(%totalPoints <= 4, 1, iif(%totalPoints <= 6, 2, iif(%totalPoints = 7, 3, iif(%totalPoints = 8, 4, iif(%totalPoints = 9, 5, iif(%totalPoints = 10, 6, iif(%totalPoints = 11, 8, iif(%totalPoints = 12, 10, iif(%totalPoints = 13, 12, iif(%totalPoints = 14, 16, iif(%totalPoints = 15, 20, iif(%totalPoints = 16, 25, 30))))))))))))), iif(%totalPoints < 9, 0.5, iif(%totalPoints <= 12, 1, iif(%totalPoints <= 14, 2, iif(%totalPoints = 15, 3, iif(%totalPoints = 16, 4, iif(%totalPoints = 17, 5, iif(%totalPoints = 18, 6, iif(%totalPoints = 19, 8, iif(%totalPoints = 20, 11, iif(%totalPoints = 21, 14, iif(%totalPoints = 22, 17, iif(%totalPoints = 23, 22, iif(%totalPoints = 24, 27, 30))))))))))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%riskNumeric < 10, 'low', iif(%riskNumeric <= 20, 'intermediate', 'high'))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

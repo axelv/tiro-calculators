@@ -1,0 +1,345 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "TMacs",
+  "title": "T-MACS — Troponin-only Manchester Acute Coronary Syndromes Decision Aid",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "T-MACS estimates the probability of acute coronary syndrome within 30 days for ED patients with suspected cardiac chest pain, using a single high-sensitivity cardiac troponin T (Roche Elecsys 5th-generation) measurement and six binary clinical features (Body et al., Emerg Med J 2017;34:349-356).",
+  "extension": [],
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "hs_ctnt",
+          "type": "decimal",
+          "text": "hs-cTnT on arrival (ng/L, Roche Elecsys 5th-gen)",
+          "required": true
+        },
+        {
+          "linkId": "ecg_ischaemia",
+          "type": "coding",
+          "text": "ECG ischaemia (clinician interpretation)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/t-macs",
+                "code": "no",
+                "display": "No ECG ischaemia"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/t-macs",
+                "code": "yes",
+                "display": "ECG ischaemia"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "worsening_angina",
+          "type": "coding",
+          "text": "Worsening (crescendo) angina",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/t-macs",
+                "code": "no",
+                "display": "No crescendo angina"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/t-macs",
+                "code": "yes",
+                "display": "Crescendo angina"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "pain_radiates_right_arm",
+          "type": "coding",
+          "text": "Pain radiating to the right arm or shoulder",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/t-macs",
+                "code": "no",
+                "display": "No right-arm radiation"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/t-macs",
+                "code": "yes",
+                "display": "Right-arm radiation"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "vomiting_with_pain",
+          "type": "coding",
+          "text": "Vomiting in association with the chest pain",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/t-macs",
+                "code": "no",
+                "display": "No vomiting"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/t-macs",
+                "code": "yes",
+                "display": "Vomiting with pain"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "sweating_observed",
+          "type": "coding",
+          "text": "Sweating (diaphoresis) observed by clinician",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/t-macs",
+                "code": "no",
+                "display": "No diaphoresis"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/t-macs",
+                "code": "yes",
+                "display": "Diaphoresis observed"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "sbp_lt_100",
+          "type": "coding",
+          "text": "Hypotension on arrival (SBP < 100 mmHg)",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/t-macs",
+                "code": "no",
+                "display": "SBP ≥ 100 mmHg"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/t-macs",
+                "code": "yes",
+                "display": "SBP < 100 mmHg"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "linear_predictor",
+          "type": "decimal",
+          "text": "Linear predictor (logit)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "-4.766 + iif(%resource.item.where(linkId='inputs').item.where(linkId='ecg_ischaemia').answer.value.code = 'yes', 1.713, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='worsening_angina').answer.value.code = 'yes', 0.847, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pain_radiates_right_arm').answer.value.code = 'yes', 0.607, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='vomiting_with_pain').answer.value.code = 'yes', 1.417, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sweating_observed').answer.value.code = 'yes', 2.058, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sbp_lt_100').answer.value.code = 'yes', 1.208, 0) + 0.089 * %resource.item.where(linkId='inputs').item.where(linkId='hs_ctnt').answer.value"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "probability",
+          "type": "decimal",
+          "text": "Probability of ACS within 30 days",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "1 / (1 + (-1 * (-4.766 + iif(%resource.item.where(linkId='inputs').item.where(linkId='ecg_ischaemia').answer.value.code = 'yes', 1.713, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='worsening_angina').answer.value.code = 'yes', 0.847, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pain_radiates_right_arm').answer.value.code = 'yes', 0.607, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='vomiting_with_pain').answer.value.code = 'yes', 1.417, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sweating_observed').answer.value.code = 'yes', 2.058, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sbp_lt_100').answer.value.code = 'yes', 1.208, 0) + 0.089 * %resource.item.where(linkId='inputs').item.where(linkId='hs_ctnt').answer.value)).exp())"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_band",
+          "type": "string",
+          "text": "Risk band",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(1 / (1 + (-1 * (-4.766 + iif(%resource.item.where(linkId='inputs').item.where(linkId='ecg_ischaemia').answer.value.code = 'yes', 1.713, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='worsening_angina').answer.value.code = 'yes', 0.847, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pain_radiates_right_arm').answer.value.code = 'yes', 0.607, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='vomiting_with_pain').answer.value.code = 'yes', 1.417, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sweating_observed').answer.value.code = 'yes', 2.058, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sbp_lt_100').answer.value.code = 'yes', 1.208, 0) + 0.089 * %resource.item.where(linkId='inputs').item.where(linkId='hs_ctnt').answer.value)).exp()) < 0.02, 'very_low', iif(1 / (1 + (-1 * (-4.766 + iif(%resource.item.where(linkId='inputs').item.where(linkId='ecg_ischaemia').answer.value.code = 'yes', 1.713, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='worsening_angina').answer.value.code = 'yes', 0.847, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pain_radiates_right_arm').answer.value.code = 'yes', 0.607, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='vomiting_with_pain').answer.value.code = 'yes', 1.417, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sweating_observed').answer.value.code = 'yes', 2.058, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sbp_lt_100').answer.value.code = 'yes', 1.208, 0) + 0.089 * %resource.item.where(linkId='inputs').item.where(linkId='hs_ctnt').answer.value)).exp()) < 0.05, 'low', iif(1 / (1 + (-1 * (-4.766 + iif(%resource.item.where(linkId='inputs').item.where(linkId='ecg_ischaemia').answer.value.code = 'yes', 1.713, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='worsening_angina').answer.value.code = 'yes', 0.847, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pain_radiates_right_arm').answer.value.code = 'yes', 0.607, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='vomiting_with_pain').answer.value.code = 'yes', 1.417, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sweating_observed').answer.value.code = 'yes', 2.058, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sbp_lt_100').answer.value.code = 'yes', 1.208, 0) + 0.089 * %resource.item.where(linkId='inputs').item.where(linkId='hs_ctnt').answer.value)).exp()) < 0.95, 'moderate', 'high')))"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_band_label",
+          "type": "string",
+          "text": "Risk band (label)",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(1 / (1 + (-1 * (-4.766 + iif(%resource.item.where(linkId='inputs').item.where(linkId='ecg_ischaemia').answer.value.code = 'yes', 1.713, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='worsening_angina').answer.value.code = 'yes', 0.847, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pain_radiates_right_arm').answer.value.code = 'yes', 0.607, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='vomiting_with_pain').answer.value.code = 'yes', 1.417, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sweating_observed').answer.value.code = 'yes', 2.058, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sbp_lt_100').answer.value.code = 'yes', 1.208, 0) + 0.089 * %resource.item.where(linkId='inputs').item.where(linkId='hs_ctnt').answer.value)).exp()) < 0.02, 'Very low risk — ACS effectively ruled out', iif(1 / (1 + (-1 * (-4.766 + iif(%resource.item.where(linkId='inputs').item.where(linkId='ecg_ischaemia').answer.value.code = 'yes', 1.713, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='worsening_angina').answer.value.code = 'yes', 0.847, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pain_radiates_right_arm').answer.value.code = 'yes', 0.607, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='vomiting_with_pain').answer.value.code = 'yes', 1.417, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sweating_observed').answer.value.code = 'yes', 2.058, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sbp_lt_100').answer.value.code = 'yes', 1.208, 0) + 0.089 * %resource.item.where(linkId='inputs').item.where(linkId='hs_ctnt').answer.value)).exp()) < 0.05, 'Low risk — ACS unlikely but not excluded', iif(1 / (1 + (-1 * (-4.766 + iif(%resource.item.where(linkId='inputs').item.where(linkId='ecg_ischaemia').answer.value.code = 'yes', 1.713, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='worsening_angina').answer.value.code = 'yes', 0.847, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='pain_radiates_right_arm').answer.value.code = 'yes', 0.607, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='vomiting_with_pain').answer.value.code = 'yes', 1.417, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sweating_observed').answer.value.code = 'yes', 2.058, 0) + iif(%resource.item.where(linkId='inputs').item.where(linkId='sbp_lt_100').answer.value.code = 'yes', 1.208, 0) + 0.089 * %resource.item.where(linkId='inputs').item.where(linkId='hs_ctnt').answer.value)).exp()) < 0.95, 'Moderate risk — observational zone (diagnostic uncertainty)', 'High risk — ACS effectively ruled in')))"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

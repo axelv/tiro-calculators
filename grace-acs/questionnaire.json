@@ -1,0 +1,640 @@
+{
+  "resourceType": "Questionnaire",
+  "name": "GraceAcs",
+  "title": "GRACE ACS Risk and Mortality Calculator",
+  "status": "active",
+  "subjectType": "Patient",
+  "description": "Estimates in-hospital mortality risk for patients hospitalized with an acute coronary syndrome (STEMI / NSTEMI / unstable angina). Implements the original Granger 2003 GRACE 1.0 admission point-table nomogram and its in-hospital mortality lookup. Source: Granger CB et al., Arch Intern Med 2003;163(19):2345–2353.",
+  "item": [
+    {
+      "linkId": "inputs",
+      "type": "group",
+      "text": "Inputs",
+      "item": [
+        {
+          "linkId": "age",
+          "text": "Age (years)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "heart_rate",
+          "text": "Heart rate (bpm)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "systolic_bp",
+          "text": "Systolic blood pressure (mmHg)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "creatinine",
+          "text": "Serum creatinine (mg/dL)",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "linkId": "killip_class",
+          "text": "Killip class",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/grace-acs",
+                "code": "I",
+                "display": "Killip I (no CHF)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/grace-acs",
+                "code": "II",
+                "display": "Killip II (rales / S3 / elevated JVP)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/grace-acs",
+                "code": "III",
+                "display": "Killip III (pulmonary edema)"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/grace-acs",
+                "code": "IV",
+                "display": "Killip IV (cardiogenic shock)"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "cardiac_arrest_at_admission",
+          "text": "Cardiac arrest at admission",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/grace-acs",
+                "code": "no",
+                "display": "No cardiac arrest"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/grace-acs",
+                "code": "yes",
+                "display": "Cardiac arrest at admission"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "st_segment_deviation",
+          "text": "ST-segment deviation on admission ECG",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/grace-acs",
+                "code": "no",
+                "display": "No ST deviation"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/grace-acs",
+                "code": "yes",
+                "display": "ST-segment deviation present"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "elevated_cardiac_enzymes",
+          "text": "Elevated cardiac enzymes (troponin or CK-MB > URL)",
+          "type": "coding",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "chips"
+                  }
+                ]
+              }
+            }
+          ],
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/grace-acs",
+                "code": "no",
+                "display": "Normal cardiac enzymes"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://calculators.tiro.health/CodeSystem/grace-acs",
+                "code": "yes",
+                "display": "Elevated cardiac enzymes"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "outputs",
+      "type": "group",
+      "text": "Outputs",
+      "item": [
+        {
+          "linkId": "total_points",
+          "text": "GRACE total points (Granger 2003)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "age",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hr",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='heart_rate').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sbp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='systolic_bp').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "cr",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='creatinine').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "killip",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='killip_class').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "arrest",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='cardiac_arrest_at_admission').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "stdev",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='st_segment_deviation').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "enz",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='elevated_cardiac_enzymes').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsAge",
+                "language": "text/fhirpath",
+                "expression": "iif(%age < 30, 0, iif(%age < 40, 8, iif(%age < 50, 25, iif(%age < 60, 41, iif(%age < 70, 58, iif(%age < 80, 75, iif(%age < 90, 91, 100)))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsHr",
+                "language": "text/fhirpath",
+                "expression": "iif(%hr < 50, 0, iif(%hr < 70, 3, iif(%hr < 90, 9, iif(%hr < 110, 15, iif(%hr < 150, 24, iif(%hr < 200, 38, 46))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsSbp",
+                "language": "text/fhirpath",
+                "expression": "iif(%sbp < 80, 58, iif(%sbp < 100, 53, iif(%sbp < 120, 43, iif(%sbp < 140, 34, iif(%sbp < 160, 24, iif(%sbp < 200, 10, 0))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsCr",
+                "language": "text/fhirpath",
+                "expression": "iif(%cr < 0.40, 1, iif(%cr < 0.80, 4, iif(%cr < 1.20, 7, iif(%cr < 1.60, 10, iif(%cr < 2.00, 13, iif(%cr < 4.00, 21, 28))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsKillip",
+                "language": "text/fhirpath",
+                "expression": "iif(%killip = 'I', 0, iif(%killip = 'II', 20, iif(%killip = 'III', 39, 59)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsModifiers",
+                "language": "text/fhirpath",
+                "expression": "iif(%arrest, 39, 0) + iif(%stdev, 28, 0) + iif(%enz, 14, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalPoints",
+                "language": "text/fhirpath",
+                "expression": "%ptsAge + %ptsHr + %ptsSbp + %ptsCr + %ptsKillip + %ptsModifiers"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "%totalPoints"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "in_hospital_mortality_pct",
+          "text": "In-hospital mortality probability (%, stepwise nomogram)",
+          "type": "decimal",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "age",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hr",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='heart_rate').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sbp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='systolic_bp').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "cr",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='creatinine').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "killip",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='killip_class').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "arrest",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='cardiac_arrest_at_admission').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "stdev",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='st_segment_deviation').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "enz",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='elevated_cardiac_enzymes').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsAge",
+                "language": "text/fhirpath",
+                "expression": "iif(%age < 30, 0, iif(%age < 40, 8, iif(%age < 50, 25, iif(%age < 60, 41, iif(%age < 70, 58, iif(%age < 80, 75, iif(%age < 90, 91, 100)))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsHr",
+                "language": "text/fhirpath",
+                "expression": "iif(%hr < 50, 0, iif(%hr < 70, 3, iif(%hr < 90, 9, iif(%hr < 110, 15, iif(%hr < 150, 24, iif(%hr < 200, 38, 46))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsSbp",
+                "language": "text/fhirpath",
+                "expression": "iif(%sbp < 80, 58, iif(%sbp < 100, 53, iif(%sbp < 120, 43, iif(%sbp < 140, 34, iif(%sbp < 160, 24, iif(%sbp < 200, 10, 0))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsCr",
+                "language": "text/fhirpath",
+                "expression": "iif(%cr < 0.40, 1, iif(%cr < 0.80, 4, iif(%cr < 1.20, 7, iif(%cr < 1.60, 10, iif(%cr < 2.00, 13, iif(%cr < 4.00, 21, 28))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsKillip",
+                "language": "text/fhirpath",
+                "expression": "iif(%killip = 'I', 0, iif(%killip = 'II', 20, iif(%killip = 'III', 39, 59)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsModifiers",
+                "language": "text/fhirpath",
+                "expression": "iif(%arrest, 39, 0) + iif(%stdev, 28, 0) + iif(%enz, 14, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalPoints",
+                "language": "text/fhirpath",
+                "expression": "%ptsAge + %ptsHr + %ptsSbp + %ptsCr + %ptsKillip + %ptsModifiers"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalPoints <= 60, 0.2, iif(%totalPoints < 80, 0.3, iif(%totalPoints < 90, 0.4, iif(%totalPoints < 100, 0.6, iif(%totalPoints < 110, 0.8, iif(%totalPoints < 120, 1.1, iif(%totalPoints < 130, 1.6, iif(%totalPoints < 140, 2.1, iif(%totalPoints < 150, 2.9, iif(%totalPoints < 160, 3.9, iif(%totalPoints < 170, 5.4, iif(%totalPoints < 180, 7.3, iif(%totalPoints < 190, 9.8, iif(%totalPoints < 200, 13.0, iif(%totalPoints < 210, 18.0, iif(%totalPoints < 220, 23.0, iif(%totalPoints < 230, 29.0, iif(%totalPoints < 240, 36.0, iif(%totalPoints < 250, 44.0, 52.0)))))))))))))))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "decimal-field"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "risk_category_inhospital",
+          "text": "In-hospital risk category (ESC 2023 NSTE-ACS strata)",
+          "type": "string",
+          "readOnly": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "age",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='age').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "hr",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='heart_rate').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "sbp",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='systolic_bp').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "cr",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='creatinine').answer.value"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "killip",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='killip_class').answer.value.code"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "arrest",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='cardiac_arrest_at_admission').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "stdev",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='st_segment_deviation').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "enz",
+                "language": "text/fhirpath",
+                "expression": "%resource.item.where(linkId='inputs').item.where(linkId='elevated_cardiac_enzymes').answer.value.code = 'yes'"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsAge",
+                "language": "text/fhirpath",
+                "expression": "iif(%age < 30, 0, iif(%age < 40, 8, iif(%age < 50, 25, iif(%age < 60, 41, iif(%age < 70, 58, iif(%age < 80, 75, iif(%age < 90, 91, 100)))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsHr",
+                "language": "text/fhirpath",
+                "expression": "iif(%hr < 50, 0, iif(%hr < 70, 3, iif(%hr < 90, 9, iif(%hr < 110, 15, iif(%hr < 150, 24, iif(%hr < 200, 38, 46))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsSbp",
+                "language": "text/fhirpath",
+                "expression": "iif(%sbp < 80, 58, iif(%sbp < 100, 53, iif(%sbp < 120, 43, iif(%sbp < 140, 34, iif(%sbp < 160, 24, iif(%sbp < 200, 10, 0))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsCr",
+                "language": "text/fhirpath",
+                "expression": "iif(%cr < 0.40, 1, iif(%cr < 0.80, 4, iif(%cr < 1.20, 7, iif(%cr < 1.60, 10, iif(%cr < 2.00, 13, iif(%cr < 4.00, 21, 28))))))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsKillip",
+                "language": "text/fhirpath",
+                "expression": "iif(%killip = 'I', 0, iif(%killip = 'II', 20, iif(%killip = 'III', 39, 59)))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "ptsModifiers",
+                "language": "text/fhirpath",
+                "expression": "iif(%arrest, 39, 0) + iif(%stdev, 28, 0) + iif(%enz, 14, 0)"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/variable",
+              "valueExpression": {
+                "name": "totalPoints",
+                "language": "text/fhirpath",
+                "expression": "%ptsAge + %ptsHr + %ptsSbp + %ptsCr + %ptsKillip + %ptsModifiers"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression",
+              "valueExpression": {
+                "language": "text/fhirpath",
+                "expression": "iif(%totalPoints <= 108, 'low', iif(%totalPoints <= 140, 'intermediate', 'high'))"
+              }
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://fhir.tiro.health/CodeSystem/tiro-questionnaire-item-control",
+                    "code": "text-field"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
